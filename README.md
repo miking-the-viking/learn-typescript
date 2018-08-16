@@ -95,13 +95,24 @@ Create a folder in your root project folder that will contain your node project.
 
 Call `yarn init` in the `node` project folder to initialize your Node project and generate the necessary `package.json` to contain information about the Node project, executable scripts, dependencies (production & developmental), and other various project configurations.
 
-#### Install Typescript
+#### Install Typescript and TS Lint
 
-Once Typescript is installed globally using `npm install -g typescript`, it can compile a `.ts` file by using `tsc`.
+Once Typescript is installed globally using `npm install -g typescript tslint`, it can compile a `.ts` file by using `tsc`.
 
 
 	`tsc main.ts`
 
 #### Generate `.tsconfig.json`
 
-Call `tsc --init` to autogenerate a `tsconfig.json`. Typescript explicitly defines it enforces so you'll likely find yourself customizing this file to your individual project's needs.
+Call `tsc --init` to autogenerate a `tsconfig.json`, this is the configuration object for how Typescript behaves. Typescript explicitly defines it enforces so you'll likely find yourself customizing this file to your individual project's needs.
+
+In this case the main changes I've made are:
+
+- `baseUrl` to be `./src` (where the source code of this node service will reside)
+- `outDir` to be `./dist` (where compiled code will go)
+- `target` to be `es6` (Access to more advanced features)
+
+### Generate `tslint.json`
+
+Call `tslint --init` to autogenerate a `tslint.json`, this is the configuration object for linting your Typescript project. Just like with Typescript, you can customize the linter to your hearts content; although there are great, already established conventions out there already.
+
