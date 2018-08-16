@@ -5,3 +5,4 @@
 - Created Project & Repo
 - outlined rough project goal map in readme
 - setup basic project components
+    - git project, gitignore

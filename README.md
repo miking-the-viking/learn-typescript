@@ -2,7 +2,7 @@
 
 This repo is a step by step implementation of a Typescript project and the various benefits therein.
 
-    This tutorial aims for a low bar of entry; it may be quite verbose, the goal is that anyone of any level can learn something from this demo.
+    This tutorial aims for a low barrier to entry; it may be quite verbose, the goal is that anyone of any level can learn something from this demo.
 
 A rough project map would include:
 
@@ -51,7 +51,57 @@ A rough project map would include:
 
 Set up your project to use git version control, node, configurable environment variables, Typescript, webpack and nodemon.
 
-### Step 1. Git
+It is assumed that the following are already installed on your system:
 
-	 Assumes you have `git` installed
+- Git
+- Node
+- Docker
 
+	You can also use `yarn` instead of `npm` for a Node Package Manager. Don't feel limited just because one or the other is used in this one.
+
+If you are using windows, ensure that Windows Subsystem for Linux is enabled as Linux-sytle commands and configurations will be used.
+
+### Git Follow-Along
+
+This demonstration will have very informative documentation and concise commits demonstrating each topic that you can quickly jump through.
+
+1. Clone this repo
+2. Checkout any commit id to see the relevant code changes
+
+### Step 1. Setting up Git
+
+If you're serious about your project, the first thing that you should do is configure the version control for your project. Even if the project is far along its lifeline: it's never _too_ late to start version controlling your software!
+
+In your project directory call `git init`, configure the `remote` to point to whatever remote Git repository you desire.
+
+	For Privacy, BitBucket is unlimited free tier.
+	For Public, GitHub is unlimited free tier.
+
+	There is also GitLab, VSTS, and many more! Each with their own perks and drawbacks.
+
+#### `.gitignore`
+
+Setup your `.gitignore` file to ensure that Git ignores any unnecessary files/directories like `node_modules`, `.env`, optimized images, scratch work, generated files, etc.
+
+#### Environment Variables
+
+Create a `.env.example` to be the source of truth as to what environment variables will be required within your application; whether it be a node application, docker container orchestration, database configuration, etc. The first step of starting up an application should be to copy its `.env.example` into a local `.env` that can be populated to your specific environment's purpose and constraints.
+
+In this case the `.env.example` is only being created with one parameter: `NODE_ENV='development'`. Copy this file into `.env` to start configuring your local project (at present there is not much, but this will change).
+
+### Step 2. Setup Node Project
+
+Create a folder in your root project folder that will contain your node project. In this demo it the folder will be called `node`.
+
+Call `yarn init` in the `node` project folder to initialize your Node project and generate the necessary `package.json` to contain information about the Node project, executable scripts, dependencies (production & developmental), and other various project configurations.
+
+#### Install Typescript
+
+Once Typescript is installed globally using `npm install -g typescript`, it can compile a `.ts` file by using `tsc`.
+
+
+	`tsc main.ts`
+
+#### Generate `.tsconfig.json`
+
+Call `tsc --init` to autogenerate a `tsconfig.json`. Typescript explicitly defines it enforces so you'll likely find yourself customizing this file to your individual project's needs.
