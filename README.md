@@ -15,12 +15,16 @@ A rough project map would include:
     - Typescript
         - `tsconfig`
         - `tslint`
-    - Webpack
+        - `ts-node`
+        - `ts-jest`
     - Nodemon
-- Interfaces
-- Classes
-- Generics
-- Decorators
+    - Testing Framework Configuration using Jest
+    - Build Configuration using Webpack
+- OOP
+    - Interfaces
+    - Classes
+    - Generics
+    - Decorators
 - Tests
     - Mocking
     - E2E (after Docker?)
@@ -150,7 +154,7 @@ Create a `src/` folder in the `node/` directory and a `main.ts`. Add the followi
 
 You can not start node script in either dev mode (with automatic recompilation/starting) using `yarn start:dev`, or you can start it normally using `yarn start`.
 
-##### Setup Testing Framework
+### Step 3: Setup Testing Framework
 
 Add to the end of your package json the following basic configuration for jest:
 
@@ -182,3 +186,8 @@ and the following scripts:
 
 Now you can run `yarn test` to run any jest tests in your project. In this configuration that works for any file following the pattern `*.(test|spect).(ts|js)`.
 
+### Step 3: Setup Build Process
+
+We'll use Webpack for building the distributable code, `yarn add -D webpack`.
+
+Make a `webpack.config.json` in the root of the node project, a sibling of `package.json`.

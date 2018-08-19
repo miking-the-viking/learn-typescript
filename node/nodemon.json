@@ -6,5 +6,10 @@
     "ignore": [
       "src/**/*.spec.ts"
     ],
-    "exec": "ts-node -r tsconfig-paths/register src/main.ts"
+    "exec": "ts-node -r tsconfig-paths/register src/main.ts",
+    "events": {
+      "start": "echo 'Nodemon has STARTED'",
+      "restart": "echo 'Nodemon has RESTARTED' && osascript -e 'display notification \"Webpack Nodemon restarted\" with title \"Nodemon\"'",
+      "crash": "echo 'Nodemon has CRASHED' && osascript -e 'display notification \"Nodemon has crashed\" with title \"Nodemon\""
+    }
   }
