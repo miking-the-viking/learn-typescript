@@ -97,10 +97,11 @@ Call `yarn init` in the `node` project folder to initialize your Node project an
 
 #### Install Typescript and TS Lint
 
-Once Typescript is installed globally using `npm install -g typescript tslint`, it can compile a `.ts` file by using `tsc`.
-
+Once Typescript is installed globally using `yarn add typescript && yarn add -D tslint`, it can compile a `.ts` file by using `tsc`.
 
 	`tsc main.ts`
+
+While you're at it, `yarn add -D ts-node ts-jest and tsconfig-paths`
 
 #### Generate `.tsconfig.json`
 
@@ -115,4 +116,37 @@ In this case the main changes I've made are:
 ### Generate `tslint.json`
 
 Call `tslint --init` to autogenerate a `tslint.json`, this is the configuration object for linting your Typescript project. Just like with Typescript, you can customize the linter to your hearts content; although there are great, already established conventions out there already.
+
+#### Install `nodemon` (Dev)
+
+`nodemon` is much like pmw in that is runs your node application, monitoring for any code changes and/or crashes. Allowing your code to automatically restart on edit in development mode.
+
+	`yarn add -D nodemon`
+
+Create a `nodemon.json` to configure nodemon. A sample base is below:
+
+```json
+{
+    "watch": [
+	  "src",
+	  "test"
+    ],
+    "ext": "ts",
+    "ignore": [
+      "src/**/*.spec.ts"
+    ],
+    "exec": "ts-node -r tsconfig-paths/register src/main.ts"
+  }
+```
+
+Create a `src/` folder in the `node/` directory and a `main.ts`. Add the following scripts to your `package.json`:
+
+```javascript
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start:dev": "nodemon"
+  },
+```
+
+You can not start node script in either dev mode (with automatic recompilation/starting) using `yarn start:dev`, or you can start it normally using `yarn start`.
 
