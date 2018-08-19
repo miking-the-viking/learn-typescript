@@ -101,9 +101,9 @@ Once Typescript is installed globally using `yarn add typescript && yarn add -D 
 
 	`tsc main.ts`
 
-While you're at it, `yarn add -D ts-node ts-jest and tsconfig-paths`
+While you're at it, `yarn add -D ts-node jest ts-jest @types/jest tsconfig-paths`
 
-#### Generate `.tsconfig.json`
+##### Generate `.tsconfig.json`
 
 Call `tsc --init` to autogenerate a `tsconfig.json`, this is the configuration object for how Typescript behaves. Typescript explicitly defines it enforces so you'll likely find yourself customizing this file to your individual project's needs.
 
@@ -113,7 +113,7 @@ In this case the main changes I've made are:
 - `outDir` to be `./dist` (where compiled code will go)
 - `target` to be `es6` (Access to more advanced features)
 
-### Generate `tslint.json`
+##### Generate `tslint.json`
 
 Call `tslint --init` to autogenerate a `tslint.json`, this is the configuration object for linting your Typescript project. Just like with Typescript, you can customize the linter to your hearts content; although there are great, already established conventions out there already.
 
@@ -149,4 +149,36 @@ Create a `src/` folder in the `node/` directory and a `main.ts`. Add the followi
 ```
 
 You can not start node script in either dev mode (with automatic recompilation/starting) using `yarn start:dev`, or you can start it normally using `yarn start`.
+
+##### Setup Testing Framework
+
+Add to the end of your package json the following basic configuration for jest:
+
+```json
+,
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+```
+
+and the following scripts:
+
+```json
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:watch": "jest --watch",
+```
+
+Now you can run `yarn test` to run any jest tests in your project. In this configuration that works for any file following the pattern `*.(test|spect).(ts|js)`.
 
