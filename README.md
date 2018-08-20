@@ -191,3 +191,14 @@ Now you can run `yarn test` to run any jest tests in your project. In this confi
 We'll use Webpack for building the distributable code, `yarn add -D webpack`.
 
 Make a `webpack.config.json` in the root of the node project, a sibling of `package.json`.
+
+Now you can run `yarn build` to build distributable, production-ready js.
+
+## TypeScript Features
+
+TypeScript helps enhance the development and debugging experience by introducing static types to the JavaScript environment. This enhances JavaScript with the real benefits of OOP concepts such as: interfaces, classes, generics, and more!
+
+### Interfaces and Abstract Classes
+
+Interfaces and Abstract classes enhance the OOP experience by allowing deeper abstract concepts to be applied to a codebase; providing enforcable contracts for custom data types and their implementations throughout a system and its tests.
+
