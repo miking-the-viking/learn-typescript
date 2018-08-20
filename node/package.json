@@ -4,11 +4,11 @@
   "description": "Demonstration typescript project",
   "main": "main.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",
-    "test:cov": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test:cov": "jest --verbose --coverage",
+    "test:watch": "jest --verbose --watch",
     "webpack": "webpack --config webpack.config.js",
     "build": "webpack",
     "build:watch": "webpack -w",
@@ -21,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.0.0",
+    "jsdom": "^12.0.0",
     "typescript": "^3.0.1"
   },
   "devDependencies": {
