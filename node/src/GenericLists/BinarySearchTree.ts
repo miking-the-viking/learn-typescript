@@ -37,6 +37,8 @@ export class BinarySearchTree<T> extends GenericTreeList<T> {
         if (val instanceof Array) {
             this.root = new Node<T>(val[0]);
             val.slice(1).map((val) => this.push(val));
+        } else if (val) {
+            this.root = new Node<T>(val);
         } else {
             this.root = null;
         }

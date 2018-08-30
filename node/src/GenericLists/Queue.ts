@@ -4,11 +4,16 @@
  */
 
 import { GenericArrayList } from "./GenericArrayList";
+import { IGenericList } from "./GenericList";
 
 /**
  * Generic Queue implementation of type T
  */
-export class Queue<T> extends GenericArrayList<T> {
+export class Queue<T> extends GenericArrayList<T> implements IGenericList<T> {
+
+    constructor(val?: T | T[] | undefined) {
+        super(val);
+    }
 
     /**
      * Removes and returns the first item from the Queue, or undefined
@@ -33,7 +38,7 @@ export class Queue<T> extends GenericArrayList<T> {
      * Returns the next item from the Queue without removing it, or null
      */
     peek() {
-        return this.items.length > 0 ? this.items[0] : null;
+        return this.items.length > 0 ? this.items[0] : undefined;
     }
 
 }

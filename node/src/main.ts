@@ -1,4 +1,4 @@
-import { BinarySearchTree, Node } from "GenericLists/BinarySearchTree";
+import { BinarySearchTree } from "GenericLists/BinarySearchTree";
 
 /**
  * Main Script for TypeScript Demo Node App

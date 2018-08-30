@@ -1,6 +1,8 @@
 
 /**
  * Stack Data Type implementation of GenericList Tests
+ * 
+ * A Stack should follow the order of First In Last Out
  */
 
 import { Stack } from "../../src/GenericLists/Stack";

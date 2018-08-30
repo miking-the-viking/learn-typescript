@@ -3,10 +3,13 @@
  */
 import { GenericList } from './GenericList';
 
-export abstract class GenericArrayList<T> extends GenericList<T> {
+export interface IGenericArrayList<T> {
+    items: T[];
+}
+export abstract class GenericArrayList<T> extends GenericList<T> implements IGenericArrayList<T> {
     public items: T[] = [];
 
-    constructor(items?: T | T[]) {
+    constructor(items?: T | T[] | undefined) {
         super();
         if (items instanceof Array) {
             this.items = items;
@@ -15,7 +18,8 @@ export abstract class GenericArrayList<T> extends GenericList<T> {
         }
     }
 
-    public peek() {
+    public peek(): T | undefined {
         console.log('Peeking at the next to come out of the Array List Implementation?');
+        return undefined;
     }
 }

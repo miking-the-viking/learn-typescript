@@ -1,11 +1,13 @@
 
 /**
  * Queue Data Type Tests implementation of GenericList Tests
+ * 
+ * A Queue should follow the order of First In First Out
  */
 
 import { Queue } from "../../src/GenericLists/Queue";
 
-describe('Custom Queue Data Type:', () => {
+describe('Queue<number> Data Type:', () => {
     let myQueue: Queue<number>; // is a queue of numbers
 
     beforeAll(() => {

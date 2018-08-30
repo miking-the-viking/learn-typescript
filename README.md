@@ -105,7 +105,9 @@ Once Typescript is installed globally using `yarn add typescript && yarn add -D 
 
 	`tsc main.ts`
 
-While you're at it, `yarn add -D ts-node jest ts-jest @types/jest tsconfig-paths`
+While you're at it, `yarn add -D ts-node jest ts-jest @types/jest tsconfig-paths`.
+
+Ultimately I strongly suggest reading the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/basic-types.html).
 
 ##### Generate `.tsconfig.json`
 
@@ -241,4 +243,5 @@ Obviously a `BinarySearchTree<T>` needs `Node<T>`, so to account for the potenti
 
 `search()` was also implemented. It will search for a given value in the Binary Search Tree and return the path to the sought value as an array from the value to the root.
 
-Tests have been implemented demonstrating the accuracy of each of the different implementations of a `GenericList<T>`. Some todos for later would be better efficiencies. Maybe the Stack and/or Queue using the `GenericTreeList` instead of the `GenericArrayList`?
+Some rough tests have been implemented demonstrating the accuracy of each of the different implementations of a `GenericList<T>`. Also an Abstract Generic Queue Test was designed and implemented: allowing for testing both the QueueTree and Queue implementations of GenericList.
+
