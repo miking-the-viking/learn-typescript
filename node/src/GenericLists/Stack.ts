@@ -29,6 +29,6 @@ export class Stack<T> extends GenericArrayList<T> {
      * Returns the next item from the Stack without removing it, or null
      */
     peek() {
-        return this.items.length > 0 ? this.items[this.items.length - 1] : null;
+        return this.items.length > 0 ? this.items[this.items.length - 1] : undefined;
     }
 }

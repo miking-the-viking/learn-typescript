@@ -248,7 +248,7 @@ Some rough tests have been implemented demonstrating the accuracy of each of the
 
 ## Setup the Server
 
-We'll be using NestJS for its amazing CLI, advanced features (GraphQL, etc.), and TypeScript support.
+We'll be using [NestJS](https://docs.nestjs.com/) for its amazing CLI, advanced features (GraphQL, etc.), and TypeScript support.
 
 The following commands can be run:
 

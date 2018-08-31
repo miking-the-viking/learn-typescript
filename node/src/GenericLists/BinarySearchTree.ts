@@ -162,7 +162,7 @@ export class BinarySearchTree<T> extends GenericTreeList<T> {
      */
     public peek() {
         if (!this.root) {
-            return null;
+            return undefined;
         }
 
         if (this.popOrder === POP_ORDER.LOWEST_TO_HIGHEST) {

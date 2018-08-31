@@ -26,13 +26,13 @@ const runQueueTests = <T extends GenericList<number>>(ctor: new(...args: any[]) 
             describe('A populated Queue:', () => {
     
                 beforeAll(() => {
-                    myGenericQueue = new ctor();
+                    myGenericQueue = new ctor([0, 1, 2]);
                 });
     
                 it('Returns the FIRST item in the Queue, until the Queue is EMPTY then UNDEFINED.', () => {
-                    for (let i = 0; i < 3; i ++) {
-                        expect(myGenericQueue.push(i)).toEqual(i + 1);
-                    }
+                    // for (let i = 0; i < 3; i ++) {
+                    //     expect(myGenericQueue.push(i)).toEqual(i + 1);
+                    // }
 
                     for (let i = 0; i < 3; i ++) {
                         expect(myGenericQueue.pop()).toEqual(i);

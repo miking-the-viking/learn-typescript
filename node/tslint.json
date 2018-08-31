@@ -8,6 +8,7 @@
     },
     "rules": {
       "eofline": false,
+      "trailing-comma":false,
       "quotemark": [
         true,
         "single"

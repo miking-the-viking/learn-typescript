@@ -23,7 +23,7 @@ export abstract class GenericTreeList<T> extends GenericList<T> implements IGene
         super();
     }
 
-    public peek() {
+    public peek(): T | undefined {
         console.log('Peeking at the root of the tree now, yah knob');
         return undefined;
     }

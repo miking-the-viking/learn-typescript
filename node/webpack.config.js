@@ -17,7 +17,7 @@ const devMode = process.env.NODE_ENV !== 'production'                           
 /**
  * Configuration for the `node/` TypeScript Demo Application
  */
-const tsDemoConfig = {
+const tsDemoServerConfig = {
     // entry: ['./src/main.ts'],
     entry: ['webpack/hot/poll?1000', './src/main.hmr.ts'],
     watch: true,
@@ -85,4 +85,68 @@ const tsDemoConfig = {
       }
 };
 
-module.exports = [tsDemoConfig]
+const tsDemoClientConfig = {
+  entry: './src/client/index.ts',
+  watch: true,
+  target: 'web',
+  devtool: 'source-map',
+  module: {
+      rules: [
+          {
+              test: /\.tsx?$/,
+              use: 'ts-loader',
+              exclude: /node_modules/,
+          },
+          {
+              test: /\.(sa|sc|c)ss$/,
+              use: [
+                  devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                  'css-loader',
+                  'postcss-loader',
+                  'sass-loader',
+              ],
+          }
+      ]
+  },
+  mode: 'development',
+  optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true // set to true if you want JS source maps
+        }),
+        new OptimizeCSSAssetsPlugin({})
+      ],
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      }
+    },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js', '.gql'],
+      alias: {
+        vue: 'vue/dist/vue.js'
+      }
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: devMode ? '[name].css' : '[name].[hash].css',
+        chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+      })
+    ],
+    output: {
+      path: path.join(__dirname, 'dist/typescriptDemoApp/client/js'),
+      filename: 'client.js',
+    }
+}
+
+module.exports = [tsDemoServerConfig, tsDemoClientConfig]

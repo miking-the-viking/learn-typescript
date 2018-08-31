@@ -29,7 +29,7 @@ describe('Queue<number> Data Type:', () => {
             });
 
                 it('Returns the FIRST item in the Queue, until the Queue is EMPTY then UNDEFINED.', () => {
-                    for (var i = 0; i < 3; i ++) {
+                    for (let i = 0; i < 3; i ++) {
                         expect(myQueue.pop()).toEqual(i + 1);
                         expect(myQueue.items).toHaveLength(3 - (i + 1));
                     }
