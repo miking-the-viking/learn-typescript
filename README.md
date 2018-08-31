@@ -246,3 +246,36 @@ Obviously a `BinarySearchTree<T>` needs `Node<T>`, so to account for the potenti
 
 Some rough tests have been implemented demonstrating the accuracy of each of the different implementations of a `GenericList<T>`. Also an Abstract Generic Queue Test was designed and implemented: allowing for testing both the QueueTree and Queue implementations of GenericList.
 
+## Setup the Server
+
+We'll be using NestJS for its amazing CLI, advanced features (GraphQL, etc.), and TypeScript support.
+
+The following commands can be run:
+
+## Running the app
+
+```bash
+# development
+$ yarn start
+
+# watch mode
+$ yarn start:dev
+
+# production mode
+yarn start:prod
+```
+
+## Test
+
+```bash
+# unit tests
+$ yarn test
+$ yarn test:watch
+
+# e2e tests
+$ yarn test:e2e
+$ yarn test:e2e:watch
+
+# test coverage
+$ yarn test:cov
+```

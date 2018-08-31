@@ -10,6 +10,7 @@ const path = require('path');                                                   
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");                    //  Used to extract and minify CSS built for webpack v4
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");                          //  Used to minify production javascript
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");      //  Optimizes files by reducing duplicated CSS rules
+const nodeExternals = require('webpack-node-externals');                            //  Allows defining externals (modules that should not be bundled)
 
 const devMode = process.env.NODE_ENV !== 'production'                               // Set the development mode boolean as a constant
 
@@ -17,9 +18,15 @@ const devMode = process.env.NODE_ENV !== 'production'                           
  * Configuration for the `node/` TypeScript Demo Application
  */
 const tsDemoConfig = {
-    entry: ['./src/main.ts'],
+    // entry: ['./src/main.ts'],
+    entry: ['webpack/hot/poll?1000', './src/main.hmr.ts'],
     watch: true,
-    target: 'web',
+    target: 'node',
+    externals: [
+      nodeExternals({
+        whitelist: ['webpack/hot/poll?1000'],
+      }),
+    ],  
     devtool: 'source-map',
     module: {
         rules: [
@@ -61,9 +68,10 @@ const tsDemoConfig = {
         }
       },
       resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js', '.gql'],
       },
       plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
@@ -72,8 +80,8 @@ const tsDemoConfig = {
         })
       ],
       output: {
-        path: path.join(__dirname, 'dist/typescriptDemoApp/js'),
-        filename: 'client.js',
+        path: path.join(__dirname, 'dist/typescriptDemoApp/server/js'),
+        filename: 'server.js',
       }
 };
 
