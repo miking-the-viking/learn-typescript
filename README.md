@@ -6,50 +6,51 @@ This repo is a step by step implementation of a Typescript project and the vario
 
 A rough project map would include:
 
-- Project Setup
-    - Git
-        - `.gitignore`
-    - Node
-        - `package.json`
-    - Environment Vars
-    - Typescript
-        - `tsconfig`
-        - `tslint`
-        - `ts-node`
-        - `ts-jest`
-    - Nodemon
-    - Testing Framework Configuration using Jest
-    - Build Configuration using Webpack
-- OOP
-    - Interfaces
-    - Classes
-    - Generics
-    - Decorators
-- Tests
-    - Mocking
-    - E2E (after Docker?)
-- Docker
-    - Setup
-        - `dockerfile`
-        - `docker-compose.yaml`
-    - Usage
-    	- `make`
-    	- `docker-compose`
-  	- Database
-    	- Cassandra (NoSQL)
-    	- Postgres/MySQL (SQL)
-  	- Node Microservice
-    	- NestJS
-    	- GraphQL
-- Front End Framework
+
+
+- [ ] Project Setup
+    - [x] Git
+        - [x] `.gitignore`
+    - [x] Node
+        - [x] `package.json`
+    - [x] Environment Vars
+    - [x] Typescript
+        - [x] `tsconfig`
+        - [x] `tslint`
+        - [x] `ts-node`
+        - [x] `ts-jest`
+    - [x] Nodemon
+    - [x] Testing Framework Configuration using Jest
+    - [x] Build Configuration using Webpack
+- [ ] OOP
+    - [x] Interfaces
+    - [x] Classes
+    - [x] Generics
+    - [ ] Decorators
+- [ ] Tests
+    - [ ] Mocking
+- [ ] Docker
+    - [ ] Setup
+        - [ ] `dockerfile`
+        - [ ] `docker-compose.yaml`
+    - [ ] Usage
+    	- [ ] `make`
+    	- [ ] `docker-compose`
+    - [ ] Database
+    	- [ ]Cassandra (NoSQL)
+    	- [ ] Postgres/MySQL (SQL)
+    - [ ] Node Microservice
+    	- [ ] NestJS
+    	- [ ] GraphQL
+- [ ] Front End Framework
   	- Select one!
-    	- Vue ?
-    	- React ?
-  	- Redux/Vuex State management
-  	- Vue-Router/React-Router SPA Routing
-- Front End Testing
-- E2E Testing
-- Deployment (tbd)
+    	- [ ] Vue ?
+    	- [ ] React ?
+  	- [ ] Redux/Vuex State management
+  	- [ ] Vue-Router/React-Router SPA Routing
+- [ ] Front End Testing
+- [ ] E2E Testing
+- [ ] Deployment (tbd)
 
 ## Project Setup
 
