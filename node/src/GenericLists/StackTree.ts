@@ -31,7 +31,7 @@ export class StackTree<T> extends GenericTreeList<T> implements IGenericList<T> 
     }
 
     /**
-     * Pushes a value onto the Queue, returning the Queue length
+     * Pushes a value onto the Stack, returning the Stack length
      * @param val 
      */
     public push(val: T, node: StackNode<T> | null = null): number {
@@ -51,7 +51,7 @@ export class StackTree<T> extends GenericTreeList<T> implements IGenericList<T> 
     }
 
     /**
-     * Pops a value from the front of the Queue
+     * Pops a value from the front of the Stack
      */
     public pop() {
         if (!this.root) {
