@@ -3,13 +3,15 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
-import { createProvider } from './vue-apollo'
+
+// Require the main Sass manifest file
+// tslint:disable-next-line:no-var-requires
+require('./styles/app.scss');
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
-  apolloProvider: createProvider(),
-  render: (h) => h(App)
+  render: (h) => h(App),
 }).$mount('#app');

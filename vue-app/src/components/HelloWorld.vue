@@ -1,6 +1,6 @@
 <template lang='pug'>
   div
-    h1 Hello World! Bitch.
+    h1 Hello World!
     #{ msg }
 </template>
 

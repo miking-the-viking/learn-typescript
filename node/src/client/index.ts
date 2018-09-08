@@ -4,6 +4,10 @@ import App from './App.vue';
 import Example from './components/Example.vue';
 import examples from '../../examples';
 
+if (!window.appData) {
+  console.error('no appData detected');
+}
+
 Vue.config.devtools = true;
 
 Vue.use(Router);
