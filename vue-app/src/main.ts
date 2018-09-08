@@ -1,12 +1,12 @@
 import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
-import './registerServiceWorker';
+import '@/styles/app.scss';
+// import '@/icons';
+// import '@/permission';
 
-// Require the main Sass manifest file
-// tslint:disable-next-line:no-var-requires
-require('./styles/app.scss');
+import App from '@/App.vue';
+import router from '@/router';
+import store from '@/store';
+import '@/registerServiceWorker';
 
 Vue.config.productionTip = false;
 

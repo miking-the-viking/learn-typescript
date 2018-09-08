@@ -10,15 +10,25 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@types/js-cookie": "^2.2.0",
+    "axios": "^0.18.0",
+    "highlight.js": "^9.12.0",
+    "js-cookie": "^2.2.0",
+    "marked": "^0.5.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-class": "^0.3.1",
+    "vuex-module-decorators": "^0.4.3",
+    "webpack": "^4.17.2"
   },
   "devDependencies": {
+    "@types/highlight.js": "^9.12.3",
     "@types/jest": "^23.1.4",
+    "@types/marked": "^0.4.1",
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-plugin-e2e-cypress": "^3.0.1",
     "@vue/cli-plugin-pwa": "^3.0.1",
@@ -27,14 +37,18 @@
     "@vue/cli-service": "^3.0.1",
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
+    "babel-plugin-transform-decorators": "^6.24.1",
     "bulma": "^0.7.1",
+    "jest": "^23.5.0",
     "lint-staged": "^7.2.2",
     "node-sass": "^4.9.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.0.1",
     "ts-jest": "^23.0.0",
-    "typescript": "^3.0.0",
+    "ts-node": "^7.0.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.0.3",
     "vue-template-compiler": "^2.5.17"
   },
   "gitHooks": {

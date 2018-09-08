@@ -1,12 +1,14 @@
-<template>
-  <div id="app">
-    <Nav />
-    <router-view/>
-  </div>
+<template lang="pug">
+  #app
+    Nav(v-bind:opened="sidebar.opened", v-bind:toggleSidebar="toggleSideBar")
+    transition(name="fade" mode="out-in")
+      router-view
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { AppModule } from '@/store/modules/app';
+
 import Nav from '@/components/Nav.vue'; // @ is an alias to /src
 
 @Component({
@@ -15,31 +17,14 @@ import Nav from '@/components/Nav.vue'; // @ is an alias to /src
   },
 })
 export default class App extends Vue {
-  // @Prop() private msg!: string;
-  // public beforeCreate() {
-  //   console.log('beforeCreate');
-  // }
-  // public created() {
-  //   console.log('created');
-  // }
-  // public beforeMount() {
-  //   console.log('beforeMount');
-  // }
-  // public mounted() {
-  //   console.log('mounted');
-  // }
-  // public beforeDestroy() {
-  //   console.log('beforeDestroy');
-  // }
-  // public destroyed() {
-  //   console.log('destroyed');
-  // }
-  // public beforeUpdate() {
-  //   console.log('beforeUpdate');
-  // }
-  // public updated() {
-  //   console.log('updated');
-  // }
+
+  get sidebar() {
+    return AppModule.sidebar;
+  }
+  public toggleSideBar() {
+    AppModule.ToggleSideBar(false);
+  }
+
 }
 </script>
 
@@ -61,5 +46,12 @@ export default class App extends Vue {
       color: #42b983;
     }
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

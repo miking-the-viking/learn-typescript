@@ -2,7 +2,7 @@
 nav.navbar(role="navigation" aria-label="main navigation")
     <!-- Branding and Hamburger -->
     .navbar-brand
-        a.navbar-item.logo-container(href="https://bulma.io")
+        a.navbar-item.logo-container(v-on:click="toggleSidebar")
             img.logo(src="../assets/logo.png" alt="Bulma: a modern CSS framework based on Flexbox")
         a.navbar-burger(role="button" aria-label="menu" aria-expanded="false")
             span(aria-hidden="true")
@@ -17,6 +17,7 @@ nav.navbar(role="navigation" aria-label="main navigation")
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import VueRouter from 'vue-router';
+import { AppModule } from '@/store/modules/app';
 
 interface INav {
     menuIsActive: boolean;
@@ -39,23 +40,24 @@ interface IRouter extends VueRouter {
 
 @Component
 export default class Nav extends Vue implements INav {
-    public menuIsActive: boolean = false;
-    public routes: IRoute[] = [];
-    // @Prop() private msg!: string;
+  public menuIsActive: boolean = false;
+  public routes: IRoute[] = [];
+  @Prop() private opened!: boolean;
+  @Prop() private toggleSidebar!: () => void;
 
-    public created() {
-        // tslint:disable-next-line:no-console
-        console.log('NAV: created', this.getRoutes());
-        this.routes = this.getRoutes();
-    }
-    private getRoutes() {
-        return ((this.$router as IRouter).options.routes.map((val, index) => {
-            return {
-                name: val.name,
-                path: val.path
-            };
-        }));
-    }
+  public created() {
+      // tslint:disable-next-line:no-console
+      console.log('NAV: created', this.getRoutes());
+      this.routes = this.getRoutes();
+  }
+  private getRoutes() {
+      return ((this.$router as IRouter).options.routes.map((val, index) => {
+          return {
+              name: val.name,
+              path: val.path
+          };
+      }));
+  }
 }
 </script>
 
