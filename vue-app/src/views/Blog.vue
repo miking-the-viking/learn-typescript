@@ -1,45 +1,58 @@
 <template lang="pug">
   .blog
-    h1 This is the blog page dude.
+    Form(v-model="newBlogFields" v-bind:submitAction="loadBlog" v-bind:formTitle="newBlogFormTitle")
+    BlogList(v-bind:blogs="blogs")
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { mapActions, mapGetters, mapState } from 'vuex';
+import { BlogModule, IBlogItem } from '@/store/modules/blog';
+import BlogList from '@/components/blog/BlogList.vue';
+import Form from '@/components/forms/Form.vue';
+import { FormFieldType } from '../components/forms/common';
 
-@Component
+const NEW_BLOG_FIELDS = [
+  {
+    label: 'title',
+    placeholder: 'Blog Title',
+    type: FormFieldType.INPUT
+  },
+  {
+    label: 'body',
+    placeholder: 'Blog Body',
+    type: FormFieldType.MARKDOWN
+  }
+];
+
+@Component({
+  components: {
+    BlogList,
+    Form
+  },
+})
 export default class Blog extends Vue {
-  // @Prop() private msg!: string;
-  // public beforeCreate() {
-  //   console.log('beforeCreate');
-  // }
-  // public created() {
-  //   console.log('created');
-  // }
-  // public beforeMount() {
-  //   console.log('beforeMount');
-  // }
-  // public mounted() {
-  //   console.log('mounted');
-  // }
-  // public beforeDestroy() {
-  //   console.log('beforeDestroy');
-  // }
-  // public destroyed() {
-  //   console.log('destroyed');
-  // }
-  // public beforeUpdate() {
-  //   console.log('beforeUpdate');
-  // }
-  // public updated() {
-  //   console.log('updated');
-  // }
+
+  public newBlogFields = NEW_BLOG_FIELDS;
+  private newBlogFormTitle = 'New Blog Post';
+
+  get blogs() {
+    return BlogModule.blogs;
+  }
+
+  public loadBlog(blog: IBlogItem) {
+    return BlogModule.LOAD_BLOG(blog);
+  }
+
+  public created() {
+    console.log('Blog component created');
+  }
 }
 </script>
 
 <style lang="scss">
 
-* {
-  color: red;
+#title-h1 {
+  size: 2em;
 }
-
 </style>

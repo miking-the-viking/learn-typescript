@@ -1,14 +1,16 @@
 # Typescript Project Demo
 
+# Heavily WIP
+
+_Please be warned that this is a little out of date. I stumbled down the rabbit hole of trying to use both the NextJS CLI and Vue CLI 3. IMO at present, the Vue CLI 3 ecosystem is too great to unplug. So I've left the mangled `node/` directory with the incomplete implementation of NestJS alone and started an (at present) undocumented Vue CLI 3 Typescript, SASS, Pug, Vuex, Vue Router, Decorator-style demonstration._
+
 This repo is a step by step implementation of a Typescript project and the various benefits therein.
 
     This tutorial aims for a low barrier to entry; it may be quite verbose, the goal is that anyone of any level can learn something from this demo.
 
 A rough project map would include:
 
-
-
-- [ ] Project Setup
+- [x] Project Setup
     - [x] Git
         - [x] `.gitignore`
     - [x] Node
@@ -27,6 +29,20 @@ A rough project map would include:
     - [x] Classes
     - [x] Generics
     - [ ] Decorators
+- [ ] Front End Framework
+  	- Select one!
+    	- [ ] Vue - Using **Vue CLI 3** _SOO GOOD_
+            - [x] pug templates
+            - [x] TypeScript
+            - [x] SCSS
+            - [x] Vuex
+            - [x] Vue Router
+            - [x] Kickass Modern Vue Decorator Libraries
+                - [x] [`Vuex-Module-Decorator`](https://github.com/championswimmer/vuex-module-decorators) [@championswimmer](https://github.com/championswimmer) _Revolutionize your life by writing Vuex Modules as Classes instead of JSON_
+                - [x] [`Vue-Property-Decorator`](https://github.com/kaorun343/vue-property-decorator) _Revolutionize your Vue experience by writing Vue Classes instead of defining Vue Configurations_
+    	- [ ] React ? _another day..._
+  	- [x] Redux/Vuex State management
+  	- [x] Vue-Router/React-Router SPA Routing
 - [ ] Tests
     - [ ] Mocking
 - [ ] Docker
@@ -42,12 +58,6 @@ A rough project map would include:
     - [ ] Node Microservice
     	- [ ] NestJS
     	- [ ] GraphQL
-- [ ] Front End Framework
-  	- Select one!
-    	- [ ] Vue ?
-    	- [ ] React ?
-  	- [ ] Redux/Vuex State management
-  	- [ ] Vue-Router/React-Router SPA Routing
 - [ ] Front End Testing
 - [ ] E2E Testing
 - [ ] Deployment (tbd)

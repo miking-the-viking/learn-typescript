@@ -1,13 +1,19 @@
 <template lang="pug">
   .about
     h1 This is an about page dude.
+    Commits
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import Commits from '../components/Commits.vue';
 
-@Component
-export default class App extends Vue {
+@Component({
+  components: {
+    Commits
+  }
+})
+export default class About extends Vue {
   // @Prop() private msg!: string;
   // public beforeCreate() {
   //   console.log('beforeCreate');
@@ -36,10 +42,5 @@ export default class App extends Vue {
 }
 </script>
 
-<style lang="scss">
-
-* {
-  color: red;
-}
-
+<style lang="scss" scoped>
 </style>
