@@ -1,7 +1,6 @@
 <template lang="pug">
-  .about
-    h1 This is an about page dude.
-    Commits
+  .about.columns
+    Commits.column
 </template>
 
 <script lang="ts">
@@ -43,4 +42,8 @@ export default class About extends Vue {
 </script>
 
 <style lang="scss" scoped>
+
+.about {
+  margin: 1em;
+}
 </style>

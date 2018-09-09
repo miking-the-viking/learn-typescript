@@ -23,6 +23,7 @@ const DEFAULT_PLACEHOLDER = 'Enter Markdown Here';
 })
 export default class MarkdownField extends Vue {
   @Prop() public label!: string;
+  @Prop() public value!: IFormField;
   @Prop() public placeholder?: string;
   @Prop() public valueRef!: string;
   public input: string = '';
@@ -30,7 +31,6 @@ export default class MarkdownField extends Vue {
   public update = _.debounce((e) => {
     console.log('debounced updated', this, this.compiledMarkdown());
     this.input = e.target.value;
-
   }, 300);
 
   public computedPlaceholder() {
@@ -40,11 +40,6 @@ export default class MarkdownField extends Vue {
   public compiledMarkdown() {
     return marked((this.input ? this.input : ''), { sanitize: true});
   }
-
-  public created() {
-    this.input = this.valueRef;
-  }
-
 
   @Watch('input', { immediate: true })
   private handleinputUpdate(val: string, oldVal: string) {

@@ -1,7 +1,7 @@
 <template lang="pug">
-  .blog
-    Form(v-model="newBlogFields" v-bind:submitAction="loadBlog" v-bind:formTitle="newBlogFormTitle")
-    BlogList(v-bind:blogs="blogs")
+  .blog.columns
+    Form.column.is-third(v-model="newBlogFields" v-bind:submitAction="loadBlog" v-bind:formTitle="newBlogFormTitle")
+    BlogList.column.is-third(v-bind:blogs="blogs")
 </template>
 
 <script lang="ts">
@@ -15,12 +15,12 @@ import { FormFieldType } from '../components/forms/common';
 const NEW_BLOG_FIELDS = [
   {
     label: 'title',
-    placeholder: 'Blog Title',
+    placeholder: 'Blog Post Title',
     type: FormFieldType.INPUT
   },
   {
     label: 'body',
-    placeholder: 'Blog Body',
+    placeholder: '# Default Blog Body',
     type: FormFieldType.MARKDOWN
   }
 ];
