@@ -36,6 +36,10 @@ export default class Blog extends Vue {
   public newBlogFields = NEW_BLOG_FIELDS;
   private newBlogFormTitle = 'New Blog Post';
 
+  created() {
+    console.log('Blog view is created');
+  }
+
   get blogs() {
     return BlogModule.blogs;
   }
@@ -44,9 +48,6 @@ export default class Blog extends Vue {
     return BlogModule.LOAD_BLOG(blog);
   }
 
-  public created() {
-    // console.log('Blog component created');
-  }
 }
 </script>
 

@@ -1,15 +1,18 @@
 <template lang="pug">
   .about.columns
     Commits.column
+    ApolloExample.column
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Commits from '../components/Commits.vue';
+import ApolloExample from '../components/ApolloExample.vue';
 
 @Component({
   components: {
-    Commits
+    Commits,
+    ApolloExample
   }
 })
 export default class About extends Vue {

@@ -36,6 +36,11 @@ class Blog extends VuexModule {
       blogs: [...(this.state as IBlogState).blogs, ...blogs]
     };
   }
+
+  @MutationAction({ mutate: ['blogs']})
+  public async FETCH_BLOGS() {
+    // const blogs = 
+  }
 }
 
 export const BlogModule = getModule(new Blog({}));

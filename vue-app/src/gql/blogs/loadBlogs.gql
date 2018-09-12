@@ -1,0 +1,9 @@
+query LoadBlogs() {
+  loadBlogs() {
+    id
+    title
+    body
+    createdAt
+    updatedAt
+  }
+}

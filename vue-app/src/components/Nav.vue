@@ -72,5 +72,8 @@ export default class Nav extends Vue implements INav {
         }
     }
 }
+.navbar-item {
+    transition: all 0.25s;
+}
 
 </style>
