@@ -1,0 +1,27 @@
+# interface Character {
+#   id: ID!
+#   name: String!
+#   friends: [Character]
+#   appearsIn: [Episode]!
+# }
+type BlogRecord{
+    title: String!
+    body: String!
+    id: String!
+    createdAt: String!
+    updatedAt: String!
+}
+
+type Query {
+    loadBlogs: [BlogRecord]
+    # loadBlog(blog: ID): Blog
+}
+
+input BlogInput {
+    title: String!
+    body: String!
+}
+
+type Mutation {
+    addBlog(input: BlogInput): BlogRecord
+}
