@@ -1,11 +1,11 @@
 <template lang="pug">
-    .field
-        label.label Markdown Field: {{label}}
-        .control.editor.columns
-          div.column.input-area
-            textarea.input(type="text" v-model="input" @input="update")
-          div.column.display-area
-            .compiledMarkdown(v-html="(compiledMarkdown())")
+		.field
+			label.label Markdown Field: {{label}}
+			.control.editor.columns
+				div.column.input-area
+					textarea.input(type="text" v-model="input" @input="update")
+				div.column.display-area
+					.compiledMarkdown(v-html="(compiledMarkdown())")
 </template>
 
 <script lang="ts">
@@ -29,17 +29,23 @@ export default class MarkdownField extends Vue {
   public input: string = '';
 
   public update = _.debounce((e) => {
-    console.log('debounced updated', this, this.compiledMarkdown());
+    // console.log('debounced updated', this, this.compiledMarkdown());
     this.input = e.target.value;
+
   }, 300);
 
   public computedPlaceholder() {
-      return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
+    return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
   }
 
   public compiledMarkdown() {
     return marked((this.input ? this.input : ''), { sanitize: true});
   }
+
+  public created() {
+    this.input = this.valueRef;
+  }
+
 
   @Watch('input', { immediate: true })
   private handleinputUpdate(val: string, oldVal: string) {
@@ -52,7 +58,7 @@ export default class MarkdownField extends Vue {
 <style lang="scss">
 
 * {
-  // color: red;
+	// color: red;
 }
 
 </style>

@@ -24,14 +24,14 @@ class Blog extends VuexModule {
   };
 
   @MutationAction({ mutate: ['blogs'] })
-  async LOAD_BLOG(blog: IBlogItem) {
+  public async LOAD_BLOG(blog: IBlogItem) {
     return {
       blogs: [...(this.state as IBlogState).blogs, blog]
     };
   }
 
   @MutationAction({ mutate: ['blogs'] })
-  async LOAD_BLOGS(blogs: IBlogItem[]) {
+  public async LOAD_BLOGS(blogs: IBlogItem[]) {
     return {
       blogs: [...(this.state as IBlogState).blogs, ...blogs]
     };

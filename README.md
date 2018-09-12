@@ -53,7 +53,7 @@ A rough project map would include:
     	- [ ] `make`
     	- [ ] `docker-compose`
     - [ ] Database
-    	- [ ]Cassandra (NoSQL)
+    	- [ ] Cassandra (NoSQL)
     	- [ ] Postgres/MySQL (SQL)
     - [ ] Node Microservice
     	- [ ] NestJS

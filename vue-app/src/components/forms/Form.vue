@@ -48,7 +48,7 @@ export default class Form extends Vue {
 
   public makeField(field: IFormField) {
     switch (field.type) {
-      case (FormFieldType.INPUT): 
+      case (FormFieldType.INPUT):
         return new InputField(field);
       default: break;
     }

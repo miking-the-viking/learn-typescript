@@ -45,7 +45,7 @@ export default class Blog extends Vue {
   }
 
   public created() {
-    console.log('Blog component created');
+    // console.log('Blog component created');
   }
 }
 </script>
