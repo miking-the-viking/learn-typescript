@@ -23,16 +23,16 @@ export default class InputField extends Vue {
   public localValue: string = '';
 
   public computedPlaceholder() {
-      return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
+		return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
   }
 
   public created() {
-    this.localValue = this.valueRef;
+	this.localValue = this.valueRef;
   }
 
   @Watch('localValue', { immediate: true })
   private handleLocalValueUpdate(val: string, oldVal: string) {
-    this.$emit('input', val);
+	this.$emit('input', val);
   }
 }
 </script>

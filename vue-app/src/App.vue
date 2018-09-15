@@ -3,26 +3,28 @@
     Nav(v-bind:opened="sidebar.opened", v-bind:toggleSidebar="toggleSideBar")
     transition(name="fade" mode="out-in")
       router-view
+    Footer
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { AppModule } from '@/store/modules/app';
-
+import Footer from '@/components/Footer.vue';
 import Nav from '@/components/Nav.vue'; // @ is an alias to /src
 
 @Component({
   components: {
-    Nav,
+	  Footer,
+	  Nav
   },
 })
 export default class App extends Vue {
 
   get sidebar() {
-    return AppModule.sidebar;
+	return AppModule.sidebar;
   }
   public toggleSideBar() {
-    AppModule.ToggleSideBar(false);
+	AppModule.ToggleSideBar(false);
   }
 
 }

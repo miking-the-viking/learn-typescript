@@ -14,21 +14,21 @@ import { FormFieldType } from '../components/forms/common';
 
 const NEW_BLOG_FIELDS = [
   {
-    label: 'title',
-    placeholder: 'Blog Post Title',
-    type: FormFieldType.INPUT
+	label: 'title',
+	placeholder: 'Blog Post Title',
+	type: FormFieldType.INPUT
   },
   {
-    label: 'body',
-    placeholder: '# Default Blog Body',
-    type: FormFieldType.MARKDOWN
+	label: 'body',
+	placeholder: '# Default Blog Body',
+	type: FormFieldType.MARKDOWN
   }
 ];
 
 @Component({
   components: {
-    BlogList,
-    Form
+	BlogList,
+	Form
   },
 })
 export default class Blog extends Vue {
@@ -36,16 +36,12 @@ export default class Blog extends Vue {
   public newBlogFields = NEW_BLOG_FIELDS;
   private newBlogFormTitle = 'New Blog Post';
 
-  created() {
-    console.log('Blog view is created');
-  }
-
   get blogs() {
-    return BlogModule.blogs;
+	  return BlogModule.blogs;
   }
 
-  public loadBlog(blog: IBlogItem) {
-    return BlogModule.LOAD_BLOG(blog);
+  private loadBlog(blog: IBlogItem) {
+	return BlogModule.LOAD_BLOG(blog);
   }
 
 }

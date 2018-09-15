@@ -17,8 +17,8 @@ import { FormFieldType, IFormField, IFieldValue } from './common';
 
 @Component({
   components: {
-    InputField,
-    MarkdownField
+	InputField,
+	MarkdownField
   }
 })
 export default class Form extends Vue {
@@ -27,42 +27,42 @@ export default class Form extends Vue {
   @Prop() private readonly submitAction!: (fields: IFormField[]) => void;
 
   public computedField<T extends IFormField>(field: IFormField): T {
-    const retVal = {
-      ...field,
-      value: null
-    } as T;
-    return retVal;
+	const retVal = {
+		...field,
+		value: null
+	} as T;
+	return retVal;
   }
 
   public performSubmit(e?: Event) {
-    if (e && !(e instanceof MouseEvent)) { e.preventDefault(); }
-    this.submitAction(this.observerArrToObj(this.value));
+	if (e && !(e instanceof MouseEvent)) { e.preventDefault(); }
+	this.submitAction(this.observerArrToObj(this.value));
   }
 
   public isInput(field: IFormField): boolean {
-    return field.type === FormFieldType.INPUT;
+	return field.type === FormFieldType.INPUT;
   }
   public isMarkdown(field: IFormField): boolean {
-    return field.type === FormFieldType.MARKDOWN;
+	return field.type === FormFieldType.MARKDOWN;
   }
 
   public makeField(field: IFormField) {
-    switch (field.type) {
-      case (FormFieldType.INPUT):
-        return new InputField(field);
-      default: break;
-    }
+	switch (field.type) {
+		case (FormFieldType.INPUT):
+		return new InputField(field);
+		default: break;
+	}
   }
 
   private observerArrToObj(arr: any[]): any {
-    return (arr.map((val) => {
-      const keys = Object.keys(val);
-      return {...keys.reduce((acc, key) => {
-        return {...acc, [key]: val[key] };
-      }, {})};
-    }) as IFieldValue[]).reduce((acc, val) => {
-      return {...acc, [val.label]: val.value}
-    }, {});;
+	return (arr.map((val) => {
+		const keys = Object.keys(val);
+		return {...keys.reduce((acc, key) => {
+		return {...acc, [key]: val[key] };
+		}, {})};
+	}) as IFieldValue[]).reduce((acc, val) => {
+		return {...acc, [val.label]: val.value};
+	}, {});
   }
 }
 </script>

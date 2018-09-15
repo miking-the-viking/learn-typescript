@@ -20,27 +20,23 @@ export interface INewBlogForm {
 class Blog extends VuexModule {
   public blogs: IBlogState['blogs'] = [];
   public newBlogForm: IBlogState['newBlogForm'] = {
-    formFields: []
+	formFields: []
   };
 
   @MutationAction({ mutate: ['blogs'] })
   public async LOAD_BLOG(blog: IBlogItem) {
-    return {
-      blogs: [...(this.state as IBlogState).blogs, blog]
-    };
+	return {
+		blogs: [...(this.state as IBlogState).blogs, blog]
+	};
   }
 
   @MutationAction({ mutate: ['blogs'] })
   public async LOAD_BLOGS(blogs: IBlogItem[]) {
-    return {
-      blogs: [...(this.state as IBlogState).blogs, ...blogs]
-    };
+	return {
+		blogs: [...(this.state as IBlogState).blogs, ...blogs]
+	};
   }
 
-  @MutationAction({ mutate: ['blogs']})
-  public async FETCH_BLOGS() {
-    // const blogs = 
-  }
 }
 
 export const BlogModule = getModule(new Blog({}));

@@ -20,21 +20,21 @@ import VueRouter from 'vue-router';
 import { AppModule } from '@/store/modules/app';
 
 interface INav {
-    menuIsActive: boolean;
-    routes: IRoute[];
+	menuIsActive: boolean;
+	routes: IRoute[];
 }
 
 interface IRoute {
-    name: string;
-    path: string;
+	name: string;
+	path: string;
 }
 
 interface IRouter extends VueRouter {
-    options: {
-        routes: Array<{
-            name: string;
-            path: string;
-        }>
+	options: {
+		routes: Array<{
+			name: string;
+			path: string;
+		}>
   ;  };
 }
 
@@ -46,17 +46,17 @@ export default class Nav extends Vue implements INav {
   @Prop() private toggleSidebar!: () => void;
 
   public created() {
-      // tslint:disable-next-line:no-console
-      console.log('NAV: created', this.getRoutes());
-      this.routes = this.getRoutes();
+		// tslint:disable-next-line:no-console
+		console.log('NAV: created', this.getRoutes());
+		this.routes = this.getRoutes();
   }
   private getRoutes() {
-      return ((this.$router as IRouter).options.routes.map((val, index) => {
-          return {
-              name: val.name,
-              path: val.path
-          };
-      }));
+		return ((this.$router as IRouter).options.routes.map((val, index) => {
+			return {
+				name: val.name,
+				path: val.path
+			};
+		}));
   }
 }
 </script>

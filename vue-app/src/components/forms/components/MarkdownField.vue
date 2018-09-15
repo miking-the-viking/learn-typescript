@@ -29,27 +29,27 @@ export default class MarkdownField extends Vue {
   public input: string = '';
 
   public update = _.debounce((e) => {
-    // console.log('debounced updated', this, this.compiledMarkdown());
-    this.input = e.target.value;
+	// console.log('debounced updated', this, this.compiledMarkdown());
+	this.input = e.target.value;
 
   }, 300);
 
   public computedPlaceholder() {
-    return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
+	return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
   }
 
   public compiledMarkdown() {
-    return marked((this.input ? this.input : ''), { sanitize: true});
+	return marked((this.input ? this.input : ''), { sanitize: true});
   }
 
   public created() {
-    this.input = this.valueRef;
+	this.input = this.valueRef;
   }
 
 
   @Watch('input', { immediate: true })
   private handleinputUpdate(val: string, oldVal: string) {
-    this.$emit('input', val);
+	this.$emit('input', val);
   }
 
 }

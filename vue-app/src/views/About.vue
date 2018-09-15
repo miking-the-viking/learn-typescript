@@ -1,20 +1,14 @@
 <template lang="pug">
-  .about.columns
-    Commits.column
-    ApolloExample.column
+  .about
+    .about-text
+      h1 About MikingTheViking
+      p MikingTheViking is not really a Viking, but has the heart of one.
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Commits from '../components/Commits.vue';
-import ApolloExample from '../components/ApolloExample.vue';
 
-@Component({
-  components: {
-    Commits,
-    ApolloExample
-  }
-})
+@Component
 export default class About extends Vue {
   // @Prop() private msg!: string;
   // public beforeCreate() {
