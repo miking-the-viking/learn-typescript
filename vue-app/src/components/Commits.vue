@@ -6,15 +6,13 @@ div.commits.box
 	.columns
 		.column.is-3-tablet.has-text-left
 			.is-size-7(v-for="(branch, branchTitle) in branches")
-				input(type="radio"
-				:id="branchTitle"
-				:value="branchTitle"
-				name="branch"
-				v-model="localCurrentBranch")
-				label(:for="branchTitle") {{ branchTitle }}
-				//- RadioField(:label="branchTitle" :valueRef="branchTitle" :isSelected="(branchTitle === currentBranch)")
-			//- .is-size-7
-			//- 	RadioList(:options="Object.keys(branches)" v-model="localCurrentBranch")
+				//- input(type="radio"
+				//- :id="branchTitle"
+				//- :value="branchTitle"
+				//- name="branch"
+				//- v-model="localCurrentBranch")
+				//- label(:for="branchTitle") {{ branchTitle }}
+				RadioField(v-model="localCurrentBranch" :labelRef="branchTitle" :nameRef="'currentBranch'" :valueRef="localCurrentBranch")
 		.column.is-2-tablet
 			h6.title.is-7.is-size-7 {{ localCurrentBranch }}
 		.column.has-text-right.is-size-7
@@ -29,26 +27,26 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { CommitsModule } from '@/store/modules/commits';
 import { setInterval } from 'timers';
 import RadioField from '@/components/forms/components/RadioField.vue';
-import RadioList from '@/components/forms/components/RadioList.vue';
 
 // const UPDATE_FREQUENCY = 300000;	// 5 minutes
 const UPDATE_FREQUENCY = 5000;	// 5 minutes
 
 @Component({
 	components: {
-		RadioList,
 		RadioField
 	}
 })
 export default class Commits extends Vue {
 	private localCurrentBranch = this.currentBranch;
 	private autoUpdateInterval: null | NodeJS.Timer = null;
+
 	get branches() {
 		return CommitsModule.branches;
   	}
 
 	get commits() {
-		return this.branches[this.currentBranch].commits;
+		return [];
+		// return this.branches[this.currentBranch].commits;
   	}
 
   	get currentBranch() {
