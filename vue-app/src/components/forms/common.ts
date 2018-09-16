@@ -7,7 +7,8 @@
   */
 export enum FormFieldType {
 	INPUT = 'input',
-	MARKDOWN = 'markdown'
+	MARKDOWN = 'markdown',
+	RADIO = 'radio'
 }
 
 /**
@@ -21,7 +22,7 @@ export interface IFormField {
 }
 
 /**
- * Definition of a Field Value key: value pair
+ * Definition of a Field Value, key: value pair
  */
 export interface IFieldValue {
   [key: string]: string;

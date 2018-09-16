@@ -2,13 +2,14 @@
     .field
         label.label {{label}}
         .control
-            input.input(type="text" v-bind:placeholder="computedPlaceholder()" v-model="localValue")
+            input.input(type="text" v-bind:placeholder="computedPlaceholder()" v-model="value")
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { mapActions, mapGetters, mapState } from 'vuex';
 import { IFormField } from '../common';
+import { GenericInput } from './GenericInput';
 
 const DEFAULT_PLACEHOLDER = 'Enter Text Here';
 
@@ -16,24 +17,24 @@ const DEFAULT_PLACEHOLDER = 'Enter Text Here';
   components: {
   }
 })
-export default class InputField extends Vue {
-  @Prop() public label!: string;
-  @Prop() public placeholder?: string;
-  @Prop() public valueRef!: string;
-  public localValue: string = '';
+export default class InputField extends GenericInput<string> {
+	@Prop() public labelRef!: string;
+	@Prop() public placeholder?: string;
+	@Prop() public valueRef!: string;
 
-  public computedPlaceholder() {
+  	public computedPlaceholder() {
 		return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
-  }
+  	}
 
-  public created() {
-	this.localValue = this.valueRef;
-  }
+  	public created() {
+		this.value = this.valueRef;
+		this.label = this.labelRef;
+  	}
 
-  @Watch('localValue', { immediate: true })
-  private handleLocalValueUpdate(val: string, oldVal: string) {
-	this.$emit('input', val);
-  }
+  	@Watch('value', { immediate: true })
+  	private handleLocalValueUpdate(val: string, oldVal: string) {
+		this.handleChange(val);
+  	}
 }
 </script>
 

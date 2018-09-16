@@ -14,14 +14,14 @@ import { FormFieldType } from '../components/forms/common';
 
 const NEW_BLOG_FIELDS = [
   {
-	label: 'title',
-	placeholder: 'Blog Post Title',
-	type: FormFieldType.INPUT
+		label: 'title',
+		placeholder: 'Blog Post Title',
+		type: FormFieldType.INPUT
   },
   {
-	label: 'body',
-	placeholder: '# Default Blog Body',
-	type: FormFieldType.MARKDOWN
+		label: 'body',
+		placeholder: '# Default Blog Body',
+		type: FormFieldType.MARKDOWN
   }
 ];
 

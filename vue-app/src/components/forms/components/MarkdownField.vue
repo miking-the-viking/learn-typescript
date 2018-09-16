@@ -3,7 +3,7 @@
 			label.label Markdown Field: {{label}}
 			.control.editor.columns
 				div.column.input-area
-					textarea.input(type="text" v-model="input" @input="update")
+					textarea.input(type="text" v-model="value" @input="update")
 				div.column.display-area
 					.compiledMarkdown(v-html="(compiledMarkdown())")
 </template>
@@ -14,24 +14,18 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 import marked from 'marked';
 import { IFormField } from '../common';
 import _ from 'lodash';
+import { GenericInput } from '@/components/forms/components/GenericInput';
 
 const DEFAULT_PLACEHOLDER = 'Enter Markdown Here';
 
-@Component({
-  components: {
-  }
-})
-export default class MarkdownField extends Vue {
-  @Prop() public label!: string;
-  @Prop() public value!: IFormField;
-  @Prop() public placeholder?: string;
+@Component
+export default class MarkdownField extends GenericInput<string> {
+  @Prop() public labelRef!: string;
   @Prop() public valueRef!: string;
-  public input: string = '';
+  @Prop() public placeholder?: string;
 
   public update = _.debounce((e) => {
-	// console.log('debounced updated', this, this.compiledMarkdown());
-	this.input = e.target.value;
-
+	this.value = e.target.value;
   }, 300);
 
   public computedPlaceholder() {
@@ -39,17 +33,18 @@ export default class MarkdownField extends Vue {
   }
 
   public compiledMarkdown() {
-	return marked((this.input ? this.input : ''), { sanitize: true});
+	return marked((this.value ? this.value : ''), { sanitize: true});
   }
 
   public created() {
-	this.input = this.valueRef;
+	this.value = this.valueRef;
+	this.label = this.labelRef;
   }
 
 
-  @Watch('input', { immediate: true })
+  @Watch('value', { immediate: true })
   private handleinputUpdate(val: string, oldVal: string) {
-	this.$emit('input', val);
+	this.handleChange(val);
   }
 
 }

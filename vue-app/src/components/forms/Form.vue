@@ -58,7 +58,7 @@ export default class Form extends Vue {
 	return (arr.map((val) => {
 		const keys = Object.keys(val);
 		return {...keys.reduce((acc, key) => {
-		return {...acc, [key]: val[key] };
+			return {...acc, [key]: val[key] };
 		}, {})};
 	}) as IFieldValue[]).reduce((acc, val) => {
 		return {...acc, [val.label]: val.value};
