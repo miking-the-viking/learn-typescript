@@ -1,11 +1,11 @@
 <template lang="pug">
-		.field
-			label.label Markdown Field: {{label}}
-			.control.editor.columns
-				div.column.input-area
-					textarea.input(type="text" v-model="value" @input="update")
-				div.column.display-area
-					.compiledMarkdown(v-html="(compiledMarkdown())")
+	.field
+		label.label Markdown Field: {{label}}
+		.control.editor.columns
+			div.column.input-area
+				textarea.input(type="text" v-model="value" @input="update")
+			div.column.display-area
+				.compiledMarkdown(v-html="(compiledMarkdown())")
 </template>
 
 <script lang="ts">
@@ -20,32 +20,26 @@ const DEFAULT_PLACEHOLDER = 'Enter Markdown Here';
 
 @Component
 export default class MarkdownField extends GenericInput<string> {
-  @Prop() public labelRef!: string;
-  @Prop() public valueRef!: string;
-  @Prop() public placeholder?: string;
+	@Prop() public labelRef!: string;
+	@Prop() public valueRef!: string;
+	@Prop() public placeholder?: string;
 
-  public update = _.debounce((e) => {
-	this.value = e.target.value;
-  }, 300);
+	public update = _.debounce((e) => {
+		this.value = e.target.value;
+	}, 300);
 
-  public computedPlaceholder() {
-	return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
-  }
+	public computedPlaceholder() {
+		return (this.placeholder ? this.placeholder : DEFAULT_PLACEHOLDER);
+	}
 
-  public compiledMarkdown() {
-	return marked((this.value ? this.value : ''), { sanitize: true});
-  }
+	public compiledMarkdown() {
+		return marked((this.value ? this.value : ''), { sanitize: true});
+	}
 
-  public created() {
-	this.value = this.valueRef;
-	this.label = this.labelRef;
-  }
-
-
-  @Watch('value', { immediate: true })
-  private handleinputUpdate(val: string, oldVal: string) {
-	this.handleChange(val);
-  }
+	public created() {
+		this.value = this.valueRef;
+		this.label = this.labelRef;
+	}
 
 }
 </script>

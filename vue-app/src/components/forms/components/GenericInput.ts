@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { Watch } from 'vue-property-decorator';
 
 /**
  * This defines a Generically Typed Input Abstract
@@ -19,6 +20,9 @@ export abstract class GenericInput<T> extends Vue {
 	 * allowing for the GenericInput to be initialized with v-model binding
 	 * @param value vale of the event
 	 */
+	@Watch('value', {
+		immediate: true
+	})
 	public handleChange(value: T) {
 		this.$emit('input', value);
 	}

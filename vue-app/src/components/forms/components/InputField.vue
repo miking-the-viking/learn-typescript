@@ -13,10 +13,7 @@ import { GenericInput } from './GenericInput';
 
 const DEFAULT_PLACEHOLDER = 'Enter Text Here';
 
-@Component({
-  components: {
-  }
-})
+@Component
 export default class InputField extends GenericInput<string> {
 	@Prop() public labelRef!: string;
 	@Prop() public placeholder?: string;
@@ -29,11 +26,6 @@ export default class InputField extends GenericInput<string> {
   	public created() {
 		this.value = this.valueRef;
 		this.label = this.labelRef;
-  	}
-
-  	@Watch('value', { immediate: true })
-  	private handleLocalValueUpdate(val: string, oldVal: string) {
-		this.handleChange(val);
   	}
 }
 </script>
