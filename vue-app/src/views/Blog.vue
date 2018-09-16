@@ -34,22 +34,20 @@ const NEW_BLOG_FIELDS = [
 })
 export default class Blog extends Vue {
 
-  get blogs() {
-	  return BlogModule.blogs;
-  }
+	public newBlogFields = NEW_BLOG_FIELDS;
+	private newBlogFormTitle = 'New Blog Post';
 
-  public newBlogFields = NEW_BLOG_FIELDS;
-  private newBlogFormTitle = 'New Blog Post';
+	get blogs() {
+		return BlogModule.blogs;
+  	}
 
-  public created() {
-	  // tslint:disable-next-line:no-console
-	  console.log('created Blog.vue');
-	  BlogModule.FETCH_BLOGS();
-  }
+  	public created() {
+		BlogModule.FETCH_BLOGS();
+  	}
 
-  private loadBlog(blog: IBlogItem) {
-	return BlogModule.LOAD_BLOG(blog);
-  }
+  	private loadBlog(blog: IBlogItem) {
+		return BlogModule.LOAD_BLOG(blog);
+  	}
 
 }
 </script>

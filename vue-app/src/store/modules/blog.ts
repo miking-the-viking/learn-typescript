@@ -14,6 +14,9 @@ export interface IBlogState {
 export interface IBlogItem {
   title: string;
   body: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface INewBlogForm {
@@ -23,8 +26,10 @@ export interface INewBlogForm {
 export interface ILoadBlogsResponse {
 	loadBlogs: IBlogState['blogs'];
 }
+export interface IAddBlogResponse {
+	addBlog: IBlogItem;
+}
 
-// tslint:disable:no-console
 @Module({ dynamic: true, store, name: 'blog' })
 class Blog extends VuexModule {
   public blogs: IBlogState['blogs'] = [];
@@ -34,15 +39,31 @@ class Blog extends VuexModule {
 
   @MutationAction({ mutate: ['blogs'] })
   public async LOAD_BLOG(blog: IBlogItem) {
-	return {
-		blogs: [...(this.state as IBlogState).blogs, blog]
-	};
-  }
+	// return {
+	// 	blogs: [...(this.state as IBlogState).blogs, blog]
+	// };
 
-  @MutationAction({ mutate: ['blogs'] })
-  public async LOAD_BLOGS(blogs: IBlogItem[]) {
+	const response = await graphqlClient.mutate({
+		// It is important to not use the
+		// ES6 template syntax for variables
+		// directly inside the `gql` query,
+		// because this would make it impossible
+		// for Babel to optimize the code.
+		mutation: gql`mutation AddBlog($input: BlogInput){
+				addBlog(input: $input){
+					id
+					title
+					body
+					createdAt
+					updatedAt
+				}
+			}`,
+		variables: {
+			input: blog
+		}
+	  });
 	return {
-		blogs: [...(this.state as IBlogState).blogs, ...blogs]
+		blogs: (response.data as IAddBlogResponse).addBlog
 	};
   }
 
@@ -65,7 +86,6 @@ class Blog extends VuexModule {
 				}
 			}`
 	  	});
-		console.log('got response: ', response);
 		return {
 			blogs: (response.data as ILoadBlogsResponse).loadBlogs
 		};

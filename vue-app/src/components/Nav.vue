@@ -46,8 +46,6 @@ export default class Nav extends Vue implements INav {
   @Prop() private toggleSidebar!: () => void;
 
   public created() {
-		// tslint:disable-next-line:no-console
-		console.log('NAV: created', this.getRoutes());
 		this.routes = this.getRoutes();
   }
   private getRoutes() {

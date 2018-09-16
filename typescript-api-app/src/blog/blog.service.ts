@@ -74,7 +74,7 @@ export class BlogService {
 
     constructor() {
         console.log('BlogService constructing, generating blogs');
-        this.devBlogs = generateBlogs(10);
+        this.devBlogs = generateBlogs();
         console.log('Blogs generated');
     }
 
@@ -85,11 +85,12 @@ export class BlogService {
 
     public async addBlog(blog: IBlogInput): Promise<IBlogRecord> {
         console.log('BlogService: adding blog ', blog);
+        const now = new Date();
         const newBlogRecord = {
             ...blog,
             id: faker.random.uuid(),
-            createdAt: faker.date.past(),
-            updatedAt: faker.date.recent()
+            createdAt: now,
+            updatedAt: now
         };
         this.devBlogs.push(newBlogRecord);
 

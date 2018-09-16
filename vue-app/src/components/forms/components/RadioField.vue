@@ -29,8 +29,6 @@ export default class RadioField extends Vue {
 
   	@Watch('localValue', { immediate: true })
   	private handleLocalValueUpdate(val: string, oldVal: string) {
-		// tslint:disable-next-line:no-console
-		console.log('updated radiofield', val, oldVal);
 		this.$emit('input', val);
   	}
 }
