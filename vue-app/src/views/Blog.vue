@@ -11,6 +11,7 @@ import { BlogModule, IBlogItem } from '@/store/modules/blog';
 import BlogList from '@/components/blog/BlogList.vue';
 import Form from '@/components/forms/Form.vue';
 import { FormFieldType } from '../components/forms/common';
+import gql from 'graphql-tag';
 
 const NEW_BLOG_FIELDS = [
   {
@@ -33,11 +34,17 @@ const NEW_BLOG_FIELDS = [
 })
 export default class Blog extends Vue {
 
+  get blogs() {
+	  return BlogModule.blogs;
+  }
+
   public newBlogFields = NEW_BLOG_FIELDS;
   private newBlogFormTitle = 'New Blog Post';
 
-  get blogs() {
-	  return BlogModule.blogs;
+  public created() {
+	  // tslint:disable-next-line:no-console
+	  console.log('created Blog.vue');
+	  BlogModule.FETCH_BLOGS();
   }
 
   private loadBlog(blog: IBlogItem) {
