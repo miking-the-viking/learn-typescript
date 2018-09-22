@@ -9,10 +9,6 @@ import { join } from 'path';
   imports: [
     GraphQLModule.forRoot({
       typePaths: ['./**/*.gql'],
-      definitions: {
-        path: join(process.cwd(), 'src/graphql.schema.d.ts'),
-        outputAs: 'class',
-      },
     }),
     BlogModule
   ],

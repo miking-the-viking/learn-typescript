@@ -11,11 +11,11 @@ export class BlogRecord {
     updatedAt: string;
 }
 
-export abstract class IMutation {
-    abstract addBlog(input?: BlogInput): BlogRecord | Promise<BlogRecord>;
+export class IMutation {
+    addBlog(input?: BlogInput): BlogRecord | Promise<BlogRecord>;
 }
 
-export abstract class IQuery {
-    abstract loadBlogs(): BlogRecord[] | Promise<BlogRecord[]>;
-    abstract temp__(): boolean | Promise<boolean>;
+export class IQuery {
+    loadBlogs(): BlogRecord[] | Promise<BlogRecord[]>;
+    __temp(): boolean | Promise<boolean>;
 }

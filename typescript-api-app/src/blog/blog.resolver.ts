@@ -1,11 +1,10 @@
+// tslint:disable:no-console
 /**
  * Blog service resolver
  */
 
 import { Resolver, Query, ResolveProperty, Mutation, Args } from '@nestjs/graphql';
 import { BlogService, IBlogRecord, IBlogInput } from './blog.service';
-
-
 
 @Resolver('Blog')
 export class BlogResolver {
