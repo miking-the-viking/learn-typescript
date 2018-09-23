@@ -6,13 +6,14 @@ div.commits.box
 	.columns
 		.column.is-3-tablet.has-text-left
 			.is-size-7(v-for="(branch, branchTitle) in branches")
-				//- input(type="radio"
-				//- :id="branchTitle"
-				//- :value="branchTitle"
-				//- name="branch"
-				//- v-model="localCurrentBranch")
-				//- label(:for="branchTitle") {{ branchTitle }}
-				RadioField(v-model="localCurrentBranch" :labelRef="branchTitle" :nameRef="'currentBranch'" :valueRef="localCurrentBranch")
+				input(type="radio"
+				:value="branchTitle"
+				v-model="localCurrentBranch")
+				label(:for="branchTitle") {{ branchTitle }}
+			//- RadioField(v-model="localCurrentBranch" :labelRef="'develop'" :valueRef="'develop'")
+			//- RadioField(v-model="localCurrentBranch" :labelRef="'master'" :valueRef="'master'")
+			//- <input type="radio" value="master" v-model="localCurrentBranch">
+			//- <input type="radio" value="develop" v-model="localCurrentBranch">
 		.column.is-2-tablet
 			h6.title.is-7.is-size-7 {{ localCurrentBranch }}
 		.column.has-text-right.is-size-7
@@ -37,7 +38,13 @@ const UPDATE_FREQUENCY = 5000;	// 5 minutes
 	}
 })
 export default class Commits extends Vue {
-	private localCurrentBranch = this.currentBranch;
+	// private localCurrentBranch = this.currentBranch;
+	get localCurrentBranch() {
+		return this.currentBranch;
+	}
+	set localCurrentBranch(branch: string) {
+		CommitsModule.SET_CURRENT_BRANCH(branch);
+	}
 	private autoUpdateInterval: null | NodeJS.Timer = null;
 
 	get branches() {
@@ -45,8 +52,8 @@ export default class Commits extends Vue {
   	}
 
 	get commits() {
-		return [];
-		// return this.branches[this.currentBranch].commits;
+		// return [];
+		return this.branches[this.currentBranch].commits;
   	}
 
   	get currentBranch() {
@@ -59,11 +66,7 @@ export default class Commits extends Vue {
 
   	private created() {
 		CommitsModule.LOAD_BRANCHES();
-  	}
-
-  	@Watch('localCurrentBranch')
-  	private handleCurrentBranchUpdate() {
-		CommitsModule.SET_CURRENT_BRANCH(this.localCurrentBranch);
+		this.localCurrentBranch = this.currentBranch;
   	}
 
   	private beforeDestroy() {

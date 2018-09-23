@@ -18,19 +18,19 @@ export interface IBranch {
 }
 
 export interface ICommit {
-		author: IAuthor;
-		comments_url: string;
-		commit: {};
-		committer: IAuthor;
-		html_url: string;
-		node_id: string;
-		parents: Array<{
-				html: string;
-				sha: string;
-				url: string;
-		}>;
+	author: IAuthor;
+	comments_url: string;
+	commit: {};
+	committer: IAuthor;
+	html_url: string;
+	node_id: string;
+	parents: Array<{
+		html: string;
 		sha: string;
 		url: string;
+	}>;
+	sha: string;
+	url: string;
 }
 
 export interface IAuthor {

@@ -14,12 +14,12 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 import marked from 'marked';
 import { IFormField } from '../common';
 import _ from 'lodash';
-import { GenericInput } from '@/components/forms/components/GenericInput';
+import { GenericInputField } from '@/components/forms/components/GenericInputField';
 
 const DEFAULT_PLACEHOLDER = 'Enter Markdown Here';
 
 @Component
-export default class MarkdownField extends GenericInput<string> {
+export default class MarkdownField extends GenericInputField<string> {
 	@Prop() public labelRef!: string;
 	@Prop() public valueRef!: string;
 	@Prop() public placeholder?: string;

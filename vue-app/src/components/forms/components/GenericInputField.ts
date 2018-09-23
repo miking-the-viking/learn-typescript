@@ -1,20 +1,12 @@
-import Vue from 'vue';
 import { Watch } from 'vue-property-decorator';
+import { GenericFormField } from './GenericFormField';
 
 /**
- * This defines a Generically Typed Input Abstract
+ * This defines a Generically Typed Input Form Field Abstract
  * Provides functionality for handling an update of a value in the vent of model binding and basic fields
  */
 
-export abstract class GenericInput<T> extends Vue {
-
-	public id: string = '';
-	public name: string = '';
-	public value: null | T = null;
-	public required: boolean = false;
-	public disabled: boolean = false;
-	public label: string = '';
-
+export abstract class GenericInputField<T> extends GenericFormField<T> {
 	/**
 	 * handleChange emits an input event for the field,
 	 * allowing for the GenericInput to be initialized with v-model binding

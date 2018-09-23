@@ -1,6 +1,7 @@
 <template lang="pug">
     .field.radio
-        input(type="radio" v-model="value" value="value" :name="name" :value="label" :id="label" :checked="isSelected")
+        //- input(type="radio" v-model="value" value="value" :name="name" :value="label" :id="label")
+        input(type="radio" v-model="value" :value="valueRef")
         label(:for="label") {{label}}
 </template>
 
@@ -8,24 +9,18 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapActions, mapGetters, mapState } from 'vuex';
 import { IFormField } from '../common';
-import { GenericInput } from '@/components/forms/components/GenericInput';
+import { GenericChangeField } from '@/components/forms/components/GenericChangeField';
 
 const DEFAULT_PLACEHOLDER = 'Enter Text Here';
 
 @Component
-export default class RadioField extends GenericInput<string> {
+export default class RadioField extends GenericChangeField<string> {
 	@Prop() public labelRef!: string;
 	@Prop() public placeholder?: string;
 	@Prop() public valueRef!: string;
 	@Prop() public nameRef?: string;
-	// @Prop() public isSelected!: boolean;
-
-	public isSelected() {
-		return this.labelRef === this.valueRef;
-	}
 
   	public created() {
-		this.value = this.valueRef;
 		this.label = this.labelRef;
 		this.name = (this.nameRef ? this.nameRef : this.labelRef);
 	}

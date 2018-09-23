@@ -9,12 +9,12 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { mapActions, mapGetters, mapState } from 'vuex';
 import { IFormField } from '../common';
-import { GenericInput } from './GenericInput';
+import { GenericInputField } from '@/components/forms/components/GenericInputField';
 
 const DEFAULT_PLACEHOLDER = 'Enter Text Here';
 
 @Component
-export default class InputField extends GenericInput<string> {
+export default class InputField extends GenericInputField<string> {
 	@Prop() public labelRef!: string;
 	@Prop() public placeholder?: string;
 	@Prop() public valueRef!: string;
