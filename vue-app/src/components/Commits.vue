@@ -5,11 +5,13 @@ div.commits.box
 	hr
 	.columns
 		.column.is-3-tablet.has-text-left
-			.is-size-7(v-for="branchTitle in branchList")
-				input(type="radio"
-				:value="branchTitle"
-				v-model="localCurrentBranch")
-				label(:for="branchTitle") {{ branchTitle }}
+			.is-size-7.radio-option(v-for="branchTitle in branchList")
+				label(:for="branchTitle")
+					input.radio-input(type="radio"
+					:id="branchTitle"
+					:value="branchTitle"
+					v-model="localCurrentBranch")
+					| {{ branchTitle }}
 			//- RadioField(v-model="localCurrentBranch" :labelRef="'develop'" :valueRef="'develop'")
 			//- RadioField(v-model="localCurrentBranch" :labelRef="'master'" :valueRef="'master'")
 		.column.is-2-tablet
@@ -72,5 +74,11 @@ export default class Commits extends Vue {
 <style scoped lang="scss">
 code.inline {
     display: inline;
+}
+.radio-option label {
+	cursor: pointer;
+}
+.radio-input {
+	margin-right: 0.6em;
 }
 </style>

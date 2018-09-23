@@ -1,7 +1,7 @@
 <template lang="pug">
 	.field
 		label.label Markdown Field: {{label}}
-		.control.editor.columns.container
+		.control.editor.columns
 			div.column.input-area
 				textarea.input(type="text" v-model="value" @input="update")
 			div.column.display-area.box

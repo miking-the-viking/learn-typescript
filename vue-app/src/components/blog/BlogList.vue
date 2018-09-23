@@ -1,14 +1,13 @@
 <template lang='pug'>
-  .blog-list
-    h1.title Blog List
-    .columns.container-fluid
-        .column
-            .blog.panel(v-for="blog in blogs" :key="blog.title + ' ' + new Date().toString()")
-              .panel-heading 
-                p {{blog.title}}
-              .panel-block.body
-                .content(v-html="markedDown(blog.body)")
-        .column
+.blog-list
+	h1.title Blog List
+	.columns.container-fluid
+		.column
+			.blog.panel(v-for="blog in blogs" :key="blog.title + '-' + new Date().toString() + '-' + Math.floor(Math.random() * 1000)")
+				.panel-heading 
+					p {{blog.title}}
+				.panel-block.body
+					.content(v-html="markedDown(blog.body)")
 </template>
 
 <script lang="ts">
