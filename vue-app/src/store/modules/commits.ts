@@ -140,7 +140,6 @@ class Commits extends VuexModule {
 	public async LOAD_BRANCH_LIST() {
 		const branchListApiResult = (await axios(API_LIST_BRANCHES_ROUTE)).data as BranchListResult[];
 		const updatedBranches = branchListApiResult.reduce((acc, val: BranchListResult) => {
-			// if val.name is not in the branchList array, push it
 			acc.push(val.name);
 			return [...acc];
 		}, [] as string[]);
