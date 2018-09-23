@@ -4,6 +4,7 @@ import { IFormField } from '@/components/forms/common';
 import axios, { AxiosResponse } from 'axios';
 
 export interface ICommitsState {
+	branchList: string[];
 	branches: IRepositoryObj;
 	currentBranch: string;
 	autoUpdate: boolean;
@@ -34,49 +35,59 @@ export interface ICommit {
 }
 
 export interface IAuthor {
-		avatar_url: string;
-		events_url: string;
-		followers_url: string;
-		following_url: string;
-		gists_url: string;
-		gravatar_url: string;
-		html_url: string;
-		id: number;
-		login: string;
-		node_id: string;
-		organizations_url: string;
-		received_events_url: string;
-		repos_url: string;
-		site_admin: boolean;
-		starred_url: string;
-		subscriptions_url: string;
-		type: string;
-		url: string;
+	avatar_url: string;
+	events_url: string;
+	followers_url: string;
+	following_url: string;
+	gists_url: string;
+	gravatar_url: string;
+	html_url: string;
+	id: number;
+	login: string;
+	node_id: string;
+	organizations_url: string;
+	received_events_url: string;
+	repos_url: string;
+	site_admin: boolean;
+	starred_url: string;
+	subscriptions_url: string;
+	type: string;
+	url: string;
 }
 
 export interface ICommitRecord {
-		author: ICommitRecordAuthor;
-		comment_count: number;
-		committer: ICommitRecordAuthor;
-		message: string;
-		tree: {
-				sha: string;
-				url: string;
-		};
+	author: ICommitRecordAuthor;
+	comment_count: number;
+	committer: ICommitRecordAuthor;
+	message: string;
+	tree: {
+		sha: string;
 		url: string;
+	};
+	url: string;
 }
 
 export interface ICommitRecordAuthor {
-		date: string;
-		email: string;
-		name: string;
+	date: string;
+	email: string;
+	name: string;
 }
 
 export interface INewBlogForm {
 	formFields: IFormField[];
 }
 
-export const API_ROUTE = 'https://api.github.com/repos/miking-the-viking/learn-typescript/commits?per_page=3&sha=';
+export interface BranchListResult {
+	name: string;
+	commit: {
+		sha: string,
+		url: string
+	}
+}
+
+export const API_LIST_BRANCHES_ROUTE = 'https://api.github.com/repos/miking-the-viking/learn-typescript/branches';
+export const API_GET_COMMITS_ROUTE
+	= 'https://api.github.com/repos/miking-the-viking/learn-typescript/commits?per_page=3&sha=';
 
 export const branchList = ['master', 'develop'];
 
@@ -94,7 +105,7 @@ const initializeBranchesObject = () => {
 async function updateBranch(branchObj: IBranch, branch: string): Promise<IRepositoryObj> {
 
 	const originalCommits = branchObj.commits;
-	const commitsApiResult = (await axios(API_ROUTE + branch)).data as ICommit[];
+	const commitsApiResult = (await axios(API_GET_COMMITS_ROUTE + branch)).data as ICommit[];
 
 	const updatedCommits = commitsApiResult.reduce((acc, val: ICommit) => {
 		// if val.sha is not in the commits array, push it
@@ -119,10 +130,26 @@ async function updateBranch(branchObj: IBranch, branch: string): Promise<IReposi
 
 @Module({ dynamic: true, store, name: 'commits' })
 class Commits extends VuexModule {
+	public branchList: ICommitsState['branchList'] = branchList;
 	public branches: ICommitsState['branches'] = initializeBranchesObject();
 	public currentBranch: ICommitsState['currentBranch'] = 'develop';
 	public autoUpdate: boolean = true;
 	public error: {} | null = null;
+
+	@MutationAction({ mutate: ['branchList']})
+	public async LOAD_BRANCH_LIST() {
+		const branchListApiResult = (await axios(API_LIST_BRANCHES_ROUTE)).data as BranchListResult[];
+		const updatedBranches = branchListApiResult.reduce((acc, val: BranchListResult) => {
+			// if val.name is not in the branchList array, push it
+			acc.push(val.name);
+			return [...acc];
+		}, [] as string[]);
+
+		const newBranchListObj = {
+			branchList: updatedBranches
+		}
+		return newBranchListObj;
+	}
 
 	@MutationAction({ mutate: ['branches']})
 	public async LOAD_BRANCHES() {

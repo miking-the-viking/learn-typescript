@@ -1,10 +1,10 @@
 <template lang="pug">
 	.field
 		label.label Markdown Field: {{label}}
-		.control.editor.columns
+		.control.editor.columns.container
 			div.column.input-area
 				textarea.input(type="text" v-model="value" @input="update")
-			div.column.display-area
+			div.column.display-area.box
 				.compiledMarkdown(v-html="(compiledMarkdown())")
 </template>
 

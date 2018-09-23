@@ -12,8 +12,6 @@ div.commits.box
 				label(:for="branchTitle") {{ branchTitle }}
 			//- RadioField(v-model="localCurrentBranch" :labelRef="'develop'" :valueRef="'develop'")
 			//- RadioField(v-model="localCurrentBranch" :labelRef="'master'" :valueRef="'master'")
-			//- <input type="radio" value="master" v-model="localCurrentBranch">
-			//- <input type="radio" value="develop" v-model="localCurrentBranch">
 		.column.is-2-tablet
 			h6.title.is-7.is-size-7 {{ localCurrentBranch }}
 		.column.has-text-right.is-size-7
@@ -38,7 +36,6 @@ const UPDATE_FREQUENCY = 5000;	// 5 minutes
 	}
 })
 export default class Commits extends Vue {
-	// private localCurrentBranch = this.currentBranch;
 	get localCurrentBranch() {
 		return this.currentBranch;
 	}
@@ -52,7 +49,6 @@ export default class Commits extends Vue {
   	}
 
 	get commits() {
-		// return [];
 		return this.branches[this.currentBranch].commits;
   	}
 
@@ -65,6 +61,7 @@ export default class Commits extends Vue {
   	}
 
   	private created() {
+		CommitsModule.LOAD_BRANCH_LIST();
 		CommitsModule.LOAD_BRANCHES();
 		this.localCurrentBranch = this.currentBranch;
   	}
