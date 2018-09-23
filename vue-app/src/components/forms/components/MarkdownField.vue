@@ -46,8 +46,4 @@ export default class MarkdownField extends GenericInputField<string> {
 
 <style lang="scss">
 
-* {
-	// color: red;
-}
-
 </style>

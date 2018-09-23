@@ -27,9 +27,6 @@ import { CommitsModule } from '@/store/modules/commits';
 import { setInterval } from 'timers';
 import RadioField from '@/components/forms/components/RadioField.vue';
 
-// const UPDATE_FREQUENCY = 300000;	// 5 minutes
-const UPDATE_FREQUENCY = 5000;	// 5 minutes
-
 @Component({
 	components: {
 		RadioField
@@ -42,18 +39,16 @@ export default class Commits extends Vue {
 	set localCurrentBranch(branch: string) {
 		CommitsModule.SET_CURRENT_BRANCH(branch);
 	}
-	private autoUpdateInterval: null | NodeJS.Timer = null;
 
 	get branches() {
 		return CommitsModule.branches;
 	}
-	  
+
 	get branchList() {
 		return CommitsModule.branchList;
 	}
 
 	get commits() {
-		console.log('resolving commits for ', this.currentBranch, this.branches);
 		return this.branches[this.currentBranch].commits;
   	}
 
@@ -65,14 +60,10 @@ export default class Commits extends Vue {
 		return CommitsModule.autoUpdate;
   	}
 
-  	private created() {
-		CommitsModule.LOAD_BRANCH_LIST();
+  	private async created() {
+		await CommitsModule.LOAD_BRANCH_LIST();
 		CommitsModule.LOAD_BRANCHES();
 		this.localCurrentBranch = this.currentBranch;
-  	}
-
-  	private beforeDestroy() {
-		clearInterval(this.autoUpdateInterval as NodeJS.Timer);
   	}
 
 }

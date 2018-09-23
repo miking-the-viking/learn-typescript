@@ -82,7 +82,7 @@ export interface BranchListResult {
 	commit: {
 		sha: string,
 		url: string
-	}
+	};
 }
 
 export const API_LIST_BRANCHES_ROUTE = 'https://api.github.com/repos/miking-the-viking/learn-typescript/branches';
@@ -103,8 +103,7 @@ const initializeBranchesObject = () => {
 };
 
 async function updateBranch(branchObj: IBranch, branch: string): Promise<IRepositoryObj> {
-	console.log('update Branch for ', branchObj, branch);
-	const originalCommits = branchObj.commits;
+	const originalCommits = branchObj ? branchObj.commits : [];
 	const commitsApiResult = (await axios(API_GET_COMMITS_ROUTE + branch)).data as ICommit[];
 
 	const updatedCommits = commitsApiResult.reduce((acc, val: ICommit) => {
@@ -147,8 +146,8 @@ class Commits extends VuexModule {
 
 		const newBranchListObj = {
 			branchList: updatedBranches
-		}
-		console.log('new branch list = ', newBranchListObj);
+		};
+
 		return newBranchListObj;
 	}
 
@@ -173,7 +172,6 @@ class Commits extends VuexModule {
 					return resultObj;
 					}
 				);
-
 		return {
 			branches: updatedBranches
 		};
