@@ -103,7 +103,7 @@ const initializeBranchesObject = () => {
 };
 
 async function updateBranch(branchObj: IBranch, branch: string): Promise<IRepositoryObj> {
-
+	console.log('update Branch for ', branchObj, branch);
 	const originalCommits = branchObj.commits;
 	const commitsApiResult = (await axios(API_GET_COMMITS_ROUTE + branch)).data as ICommit[];
 
@@ -148,14 +148,15 @@ class Commits extends VuexModule {
 		const newBranchListObj = {
 			branchList: updatedBranches
 		}
+		console.log('new branch list = ', newBranchListObj);
 		return newBranchListObj;
 	}
 
 	@MutationAction({ mutate: ['branches']})
 	public async LOAD_BRANCHES() {
-		const loadBranchPromises = Object.keys((this.state as ICommitsState).branches)
-			.map(async (branchTitle) => updateBranch((this.state as ICommitsState).branches[branchTitle], branchTitle));
-
+		const loadBranchPromises = (this.state as ICommitsState).branchList.map(
+			async (branchTitle) => updateBranch((this.state as ICommitsState).branches[branchTitle], branchTitle)
+		);
 		const updatedBranches: IRepositoryObj =
 			await Promise.all(loadBranchPromises)
 				.then((loadBranchesResults) => {

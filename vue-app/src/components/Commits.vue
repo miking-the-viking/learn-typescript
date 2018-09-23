@@ -5,7 +5,7 @@ div.commits.box
 	hr
 	.columns
 		.column.is-3-tablet.has-text-left
-			.is-size-7(v-for="(branch, branchTitle) in branches")
+			.is-size-7(v-for="branchTitle in branchList")
 				input(type="radio"
 				:value="branchTitle"
 				v-model="localCurrentBranch")
@@ -46,9 +46,14 @@ export default class Commits extends Vue {
 
 	get branches() {
 		return CommitsModule.branches;
-  	}
+	}
+	  
+	get branchList() {
+		return CommitsModule.branchList;
+	}
 
 	get commits() {
+		console.log('resolving commits for ', this.currentBranch, this.branches);
 		return this.branches[this.currentBranch].commits;
   	}
 
