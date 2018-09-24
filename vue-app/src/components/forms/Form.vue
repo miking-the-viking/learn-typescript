@@ -1,11 +1,11 @@
 <template lang="pug">
-		form.form(@submit="performSubmit")
-				h1.title {{formTitle}}
-				.field(v-for="field in value" v-bind:key="field.label")
-					InputField(v-if="isInput(field)" v-model="field.value" v-bind:labelRef="field.label" v-bind:placeholder="(field.placeholder ? field.placeholder : undefined)")
-					MarkdownField(v-else-if="isMarkdown(field)" v-model="field.value" v-bind:label="field.label" v-bind:placeholder="(field.placeholder ? field.placeholder : undefined)")
-					p(v-else) ERROR: UNKNOWN FORM TYPE: {{field.type}}
-				button.button(type="button" @click="performSubmit") Create Blog Post
+form.form(@submit="performSubmit")
+		h1.title {{formTitle}}
+		.field(v-for="field in value" v-bind:key="field.label")
+			InputField(v-if="isInput(field)" v-model="field.value" v-bind:labelRef="field.label" v-bind:placeholder="(field.placeholder ? field.placeholder : undefined)")
+			MarkdownField(v-else-if="isMarkdown(field)" v-model="field.value" v-bind:label="field.label" v-bind:placeholder="(field.placeholder ? field.placeholder : undefined)")
+			p(v-else) ERROR: UNKNOWN FORM TYPE: {{field.type}}
+		button.button(type="button" @click="performSubmit") Create Blog Post
 </template>
 
 <script lang="ts">
@@ -74,7 +74,7 @@ export default class Form extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 * {
 	// color: red;

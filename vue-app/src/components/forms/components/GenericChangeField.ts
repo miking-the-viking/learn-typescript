@@ -15,8 +15,7 @@ export abstract class GenericChangeField<T> extends GenericFormField<T> {
 		immediate: true
 	})
 	public handleChange() {
-		// tslint:disable-next-line:no-console
-		console.log('change detected: ', this.label);
+		// console.log('change detected: ', this.label);
 		this.$emit('change', this.label);
 	}
 }

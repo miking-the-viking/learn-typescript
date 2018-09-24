@@ -1,5 +1,5 @@
 <template lang='pug'>
-div.commits.box
+.commits.box
 	h5.title.is-5 Latest Commits: 
 		code.inline miking-the-viking/learn-typescript
 	hr

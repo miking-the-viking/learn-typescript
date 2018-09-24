@@ -48,7 +48,7 @@ function extractBlog(gqlAddBlogResponse: IBlogItem): IBlogItem {
 		createdAt: gqlAddBlogResponse.createdAt,
 		updatedAt: gqlAddBlogResponse.updatedAt,
 		title: gqlAddBlogResponse.title,
-		body: gqlAddBlogResponse.body,
+		body: gqlAddBlogResponse.body
 	};
 }
 

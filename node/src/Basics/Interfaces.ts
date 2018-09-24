@@ -26,7 +26,7 @@ class AnalogClock implements ClockInterface {
 }
 
 let digital = createClock(DigitalClock, 12, 17);
-let analog = createClock(AnalogClock, 7, 32);\
+let analog = createClock(AnalogClock, 7, 32);
 
 
 // Hybrid Types
