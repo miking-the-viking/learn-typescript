@@ -73,18 +73,14 @@ export class BlogService {
     devBlogs: IBlogRecord[] = [];   // memory-only, DB setup
 
     constructor() {
-        console.log('BlogService constructing, generating blogs');
         this.devBlogs = generateBlogs();
-        console.log('Blogs generated');
     }
 
     public async  getBlogs(): Promise<IBlogRecord[]> {
-        console.log('BlogService: getBlogs returning ', this.devBlogs);
         return this.devBlogs;
     }
 
     public async addBlog(blog: IBlogInput): Promise<IBlogRecord> {
-        console.log('BlogService: adding blog ', blog);
         const now = new Date();
         const newBlogRecord = {
             ...blog,

@@ -1,0 +1,104 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./typescript-api-app/
+      dockerfile: Dockerfile
+    command: yarn start:dev
+    environment:
+      - APP_DIR=${APP_DIR}
+    volumes:
+      - .:${APP_DIR}/typescript-api-app/
+      # - ${APP_DIR}/typescript-api-app/node_modules
+    ports:
+      - "3000:3000"
+
+    # depends_on:
+      # - postgres
+    # environment:
+      # DATABASE_URL: postgres://todoapp@postgres/todos
+  # postgres:
+    # image: postgres:9.6.2-alpine
+    # environment:
+      # POSTGRES_USER: todoapp
+      # POSTGRES_DB: todos
+# version: '3'
+
+# services:
+#   rabbitmq:
+#     image: "rabbitmq:3-management"
+#     hostname: "rabbitmq"
+#     environment:
+#       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+#       RABBITMQ_DEFAULT_USER: "rabbitmq"
+#       RABBITMQ_DEFAULT_PASS: "rabbitmq"
+#       RABBITMQ_DEFAULT_VHOST: "/"
+#     ports:
+#       - "15672:15672"
+#       - "5672:5672"
+
+#   cassandra:
+#     image: "cassandra"
+#     ports:
+#       - "9042:9042"
+#     volumes:
+#       - ${CASSANDRA_KEYSPACES}:/keyspaces
+
+# version: "3"
+
+# services:
+#   graphqlapi:
+#       image: node:7.7.2-alpine
+#       build:
+#           context: ./services/graphqlapi
+#           dockerfile: Dockerfile
+#       environment:
+#           - GRAPHQL_ENV=production
+#           - REDIS_HOST=redis
+#       ports:
+#           - '4200:4200'
+#       depends_on:
+#           - redis
+#           - rabbitmq
+
+#   catalog:
+#     image: nestmicroservices/catalog:${TAG:-latest}
+#     build:
+#       context: ./services/catalog
+#       dockerfile: Dockerfile
+#     environment:
+#       - REDIS_HOST=redis
+#     ports:
+#       - "4201:3000"
+#     depends_on:
+#       - redis
+#       - rabbitmq
+
+#   rabbitmq:
+#     image: "rabbitmq:3-management"
+#     hostname: "rabbitmq"
+#     environment:
+#       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+#       RABBITMQ_DEFAULT_USER: "rabbitmq"
+#       RABBITMQ_DEFAULT_PASS: "rabbitmq"
+#       RABBITMQ_DEFAULT_VHOST: "/"
+#     ports:
+#       - "15672:15672"
+#       - "5672:5672"
+
+#   redis:
+#     image: "bitnami/redis:latest"
+#     environment:
+#       # ALLOW_EMPTY_PASSWORD is recommended only for development.
+#       - ALLOW_EMPTY_PASSWORD=yes
+#       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+#     labels:
+#       kompose.service.type: nodeport
+#     ports:
+#       - "6379:6379"
+#     volumes:
+#       - "redis_data:/bitnami/redis"
+
+# volumes:
+#   redis_data:
+#     driver: local
