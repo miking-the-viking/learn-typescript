@@ -5,7 +5,7 @@ footer.footer
             strong Viking's TypeScript-Vue App
         |   I hope you enjoy the demo!
     .columns
-        Commits.commits.column.is-12-tablet.is-8-desktop.is-centered-desktop.is-4-fullhd
+        //- Commits.commits.column.is-12-tablet.is-8-desktop.is-centered-desktop.is-4-fullhd
 </template>
 
 <script lang="ts">

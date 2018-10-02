@@ -26,36 +26,38 @@ interface INav {
 
 interface IRoute {
 	name: string;
-	path: string;
+    path: string;
+    children?: Array<{
+        path: string,
+        component: Vue
+    }>
 }
 
 interface IRouter extends VueRouter {
 	options: {
-		routes: Array<{
-			name: string;
-			path: string;
-		}>
-  ;  };
+        routes: Array<IRoute>;
+    };
 }
 
 @Component
 export default class Nav extends Vue implements INav {
-  public menuIsActive: boolean = false;
-  public routes: IRoute[] = [];
-  @Prop() private opened!: boolean;
-  @Prop() private toggleSidebar!: () => void;
+    public menuIsActive: boolean = false;
+    public routes: IRoute[] = [];
+    @Prop() private opened!: boolean;
+    @Prop() private toggleSidebar!: () => void;
 
-  public created() {
-		this.routes = this.getRoutes();
-  }
-  private getRoutes() {
-		return ((this.$router as IRouter).options.routes.map((val, index) => {
-			return {
-				name: val.name,
-				path: val.path
-			};
-		}));
-  }
+    public created() {
+        this.routes = this.getRoutes();
+    }
+
+    private getRoutes() {
+        return ((this.$router as IRouter).options.routes.map((val, index) => {
+            return {
+                name: val.name,
+                path: val.path
+            };
+        }));
+    }
 }
 </script>
 

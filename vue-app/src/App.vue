@@ -1,9 +1,9 @@
 <template lang="pug">
-  #app
-    Nav(v-bind:opened="sidebar.opened", v-bind:toggleSidebar="toggleSideBar")
-    transition(name="fade" mode="out-in")
-      router-view
-    Footer
+#app
+	SideNavLayout.home(:routes="appRoutes")
+		transition(name="fade" mode="out-in")
+			router-view
+	Footer
 </template>
 
 <script lang="ts">
@@ -11,21 +11,30 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { AppModule } from '@/store/modules/app';
 import Footer from '@/components/Footer.vue';
 import Nav from '@/components/Nav.vue'; // @ is an alias to /src
+import SideNavLayout from '@/components/layouts/SideNavLayout.vue';
+import { extractRoutes, IRouter, IRoute } from '@/components/navs/AVueNav';
+
 
 @Component({
   components: {
 	  Footer,
-	  Nav
-  },
+	  Nav,
+	  SideNavLayout
+  }
 })
 export default class App extends Vue {
+	private appRoutes!: IRoute[];
 
-  get sidebar() {
-	return AppModule.sidebar;
-  }
-  public toggleSideBar() {
-	AppModule.ToggleSideBar(false);
-  }
+	created() {
+		this.appRoutes = extractRoutes(this.$router as IRouter);
+	}
+
+	get sidebar() {
+		return AppModule.sidebar;
+	}
+	public toggleSideBar() {
+		AppModule.ToggleSideBar(false);
+	}
 
 }
 </script>
@@ -42,11 +51,11 @@ export default class App extends Vue {
 #nav {
   padding: 30px;
   a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+	font-weight: bold;
+	color: #2c3e50;
+	&.router-link-exact-active {
+	  color: #42b983;
+	}
   }
 }
 
