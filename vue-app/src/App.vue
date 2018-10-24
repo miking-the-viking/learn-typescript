@@ -25,13 +25,14 @@ import { extractRoutes, IRouter, IRoute } from '@/components/navs/AVueNav';
 export default class App extends Vue {
 	private appRoutes!: IRoute[];
 
-	created() {
+	public created() {
 		this.appRoutes = extractRoutes(this.$router as IRouter);
 	}
 
 	get sidebar() {
 		return AppModule.sidebar;
 	}
+
 	public toggleSideBar() {
 		AppModule.ToggleSideBar(false);
 	}

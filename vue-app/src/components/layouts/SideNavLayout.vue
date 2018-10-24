@@ -15,7 +15,8 @@ import { IRoute } from '@/components/navs/AVueNav';
 	},
 })
 export default class SideNavLayout extends Vue {
-	@Prop() routes!: IRoute[];
+	@Prop() private routes!: IRoute[];
+
 	private expanded: boolean = false;
 
 }

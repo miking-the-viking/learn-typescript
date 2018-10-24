@@ -14,8 +14,8 @@ import { IRouter, IRoute, extractRoutes } from '@/components/navs/AVueNav';
 })
 export default class Home extends Vue {
 	private appRoutes?: IRoute[];
-	
-	created() {
+
+	private created() {
 		this.appRoutes = extractRoutes(this.$router as IRouter);
 	}
 }

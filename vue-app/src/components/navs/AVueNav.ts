@@ -32,7 +32,7 @@ export function extractRoutes(router: IRouter): IRoute[] {
 				path: val.path,
 				children: val.children
 			};
-		})
+		});
 }
 
 export abstract class AVueNav extends Vue implements INav {

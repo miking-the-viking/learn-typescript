@@ -14,7 +14,9 @@ import { AVueNav, IRouter, IRoute } from './AVueNav';
 @Component
 export default class SideNav extends AVueNav {
 	@Prop() public opened!: boolean;
-	created() {
+
+	private created() {
+		// tslint:disable-next-line:no-console
 		console.log(this.routes);
 	}
 }
