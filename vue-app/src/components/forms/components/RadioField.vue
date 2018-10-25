@@ -9,7 +9,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapActions, mapGetters, mapState } from 'vuex';
 import { IFormField } from '../common';
-import { GenericChangeField } from '@/components/forms/components/GenericChangeField';
+import { GenericChangeField } from '@/components/forms/abstracts/GenericChangeField';
 
 const DEFAULT_PLACEHOLDER = 'Enter Text Here';
 
@@ -17,7 +17,7 @@ const DEFAULT_PLACEHOLDER = 'Enter Text Here';
 export default class RadioField extends GenericChangeField<string> {
 	@Prop() public labelRef!: string;
 	@Prop() public placeholder?: string;
-	@Prop() public valueRef!: string;
+	public valueRef!: string;
 	@Prop() public nameRef?: string;
 
   	public created() {

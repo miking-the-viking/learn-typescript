@@ -4,6 +4,7 @@ form.form(@submit="performSubmit")
 		.field(v-for="field in value" v-bind:key="field.label")
 			InputField(v-if="isInput(field)" v-model="field.value" v-bind:labelRef="field.label" v-bind:placeholder="(field.placeholder ? field.placeholder : undefined)")
 			MarkdownField(v-else-if="isMarkdown(field)" v-model="field.value" v-bind:label="field.label" v-bind:placeholder="(field.placeholder ? field.placeholder : undefined)")
+			//- CheckboxField(v-else-if="isCheckboxField(field)" v-model="field.value" :checkboxValue="field.value" v-bind:labek="field.label")
 			p(v-else) ERROR: UNKNOWN FORM TYPE: {{field.type}}
 		button.button(type="button" @click="performSubmit") Create Blog Post
 </template>
@@ -13,12 +14,14 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapActions, mapGetters, mapState } from 'vuex';
 import InputField from './components/InputField.vue';
 import MarkdownField from './components/MarkdownField.vue';
+import CheckboxField from './components/CheckboxField.vue';
 import { FormFieldType, IFormField, IFieldValue } from './common';
 
 @Component({
 	components: {
 		InputField,
-		MarkdownField
+		MarkdownField,
+		CheckboxField
 	}
 })
 export default class Form extends Vue {
@@ -42,16 +45,20 @@ export default class Form extends Vue {
 	}
 
 	public isInput(field: IFormField): boolean {
-		return field.type === FormFieldType.INPUT;
+		return field.type === FormFieldType.Input;
 	}
 
 	public isMarkdown(field: IFormField): boolean {
-		return field.type === FormFieldType.MARKDOWN;
+		return field.type === FormFieldType.Markdown;
+	}
+
+	public isCheckboxField(field: IFormField): boolean {
+		return field.type === FormFieldType.Checkbox;
 	}
 
 	public makeField(field: IFormField) {
 		switch (field.type) {
-			case (FormFieldType.INPUT):
+			case (FormFieldType.Input):
 			return new InputField(field);
 			default: break;
 		}

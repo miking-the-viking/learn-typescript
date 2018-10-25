@@ -63,8 +63,8 @@ export default class Commits extends Vue {
   	}
 
   	private async created() {
-		await CommitsModule.LOAD_BRANCH_LIST();
-		CommitsModule.LOAD_BRANCHES();
+		// await CommitsModule.LOAD_BRANCH_LIST();
+		// CommitsModule.LOAD_BRANCHES();
 		this.localCurrentBranch = this.currentBranch;
   	}
 
@@ -75,9 +75,11 @@ export default class Commits extends Vue {
 code.inline {
     display: inline;
 }
+
 .radio-option label {
 	cursor: pointer;
 }
+
 .radio-input {
 	margin-right: 0.6em;
 }

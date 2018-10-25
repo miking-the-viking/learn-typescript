@@ -7,16 +7,20 @@ import { GenericFormField } from './GenericFormField';
  */
 
 export abstract class GenericInputField<T> extends GenericFormField<T> {
+
+	@Watch('value')
+	private handleValuePropUpdate(newVal: string) {
+		this.valueRef = this.value as T;
+	}
+
 	/**
-	 * handleChange emits an input event for the field,
-	 * allowing for the GenericInput to be initialized with v-model binding
-	 * @param value vale of the event
+	 * use valueRef as the bound value
 	 */
-	@Watch('value', {
-		immediate: true
-	})
-	public handleChange(value: T) {
-		this.$emit('input', value);
+	get valueRef() {
+		return this.value as T;
+	}
+	set valueRef(newValue: T) {
+		this.$emit('input', newValue);
 	}
 }
 

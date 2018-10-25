@@ -19,13 +19,17 @@ const NEW_BLOG_FIELDS = [
 	{
 		label: 'title',
 		placeholder: 'Blog Post Title',
-		type: FormFieldType.INPUT
+		type: FormFieldType.Input
 	},
 	{
 		label: 'body',
 		placeholder: '# Default Blog Body',
-		type: FormFieldType.MARKDOWN
-	}
+		type: FormFieldType.Markdown
+	},
+	// {
+	// 	label: 'post to facebook',
+	// 	type: FormFieldType.Checkbox
+	// }
 ];
 
 @Component({
@@ -48,7 +52,15 @@ export default class Blog extends Vue {
 	}
 
 	private loadBlog(blog: IBlogItem) {
-		return BlogModule.ADD_BLOG(blog);
+		return BlogModule.ADD_BLOG(blog).then(this.clearBlogForm);
+	}
+
+	private clearBlogForm() {
+		// tslint:disable-next-line:no-console
+		console.log('clearBlogForm!');
+		this.newBlogFields = this.newBlogFields.map((val) => {
+			return {...val, value: ''};
+		});
 	}
 
 }

@@ -6,9 +6,10 @@
   * Enum of avaialable Form Field Types
   */
 export enum FormFieldType {
-	INPUT = 'input',
-	MARKDOWN = 'markdown',
-	RADIO = 'radio'
+	Input = 'input',
+	Markdown = 'markdown',
+	Radio = 'radio',
+	Checkbox = 'checkbox'
 }
 
 /**

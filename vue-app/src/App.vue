@@ -1,6 +1,6 @@
 <template lang="pug">
   #app
-    Nav(v-bind:opened="sidebar.opened", v-bind:toggleSidebar="toggleSideBar")
+    Nav
     transition(name="fade" mode="out-in")
       router-view
     Footer
@@ -19,14 +19,13 @@ import Nav from '@/components/Nav.vue'; // @ is an alias to /src
   },
 })
 export default class App extends Vue {
+	get colorThemeClass() {
+		return AppModule.colorThemeClass;
+	}
 
-  get sidebar() {
-	return AppModule.sidebar;
-  }
-  public toggleSideBar() {
-	AppModule.ToggleSideBar(false);
-  }
-
+	get sizeThemeClass() {
+		return AppModule.sizeThemeClass;
+	}
 }
 </script>
 
