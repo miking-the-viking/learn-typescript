@@ -1,1 +1,12 @@
-@import '~bulma/bulma'
+@import '~bulma/bulma';
+
+@import './themes/themes.scss';
+
+* {
+    transition: background-color .5s ease, color .5s ease;
+
+    @include themify($colors) {
+        color: themed( 'textColor' );
+        background: themed( 'backgroundColor' );
+    }
+}

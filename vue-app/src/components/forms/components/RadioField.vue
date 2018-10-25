@@ -20,10 +20,10 @@ export default class RadioField extends GenericChangeField<string> {
 	public valueRef!: string;
 	@Prop() public nameRef?: string;
 
-  	public created() {
-		this.label = this.labelRef;
-		this.name = (this.nameRef ? this.nameRef : this.labelRef);
-	}
+  	// public created() {
+	// 	this.label = this.labelRef;
+	// 	this.name = (this.nameRef ? this.nameRef : this.labelRef);
+	// }
 }
 </script>
 

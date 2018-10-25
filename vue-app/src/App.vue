@@ -1,5 +1,5 @@
 <template lang="pug">
-  #app
+  #app(:class="[colorThemeClass, sizeThemeClass]")
     Nav
     transition(name="fade" mode="out-in")
       router-view

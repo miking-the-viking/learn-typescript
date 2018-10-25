@@ -11,7 +11,6 @@ import {
 	VuexModule,
 	Module,
 	Mutation,
-	Action,
 	getModule
 } from 'vuex-module-decorators';
 import store from '@/store';
@@ -121,22 +120,22 @@ function getDefaultTheme<T extends string>(theme: IThemeStore): T | undefined {
 })
 class App extends VuexModule {
 
-	public colorTheme: ColorTheme | undefined
+	public colorTheme: string | undefined
 		= (STORED_COLOR_THEME && Object.values(ColorTheme).includes(STORED_COLOR_THEME))
 		? STORED_COLOR_THEME : getDefaultTheme<ColorTheme>(COLOR_THEMES);
 
-	public sizeTheme: SizeTheme | undefined
+	public sizeTheme: string | undefined
 		= (STORED_SIZE_THEME && Object.values(SizeTheme).includes(STORED_SIZE_THEME))
 			? STORED_SIZE_THEME : getDefaultTheme<SizeTheme>(SIZE_THEMES);
 
 	@Mutation
-	public SET_COLOR_THEME(newTheme: ColorTheme) {
+	public SET_COLOR_THEME(newTheme: string) {
 		Cookies.set(COLOR_THEME_COOKIE_KEY, newTheme);
 		this.colorTheme = newTheme;
 	}
 
 	@Mutation
-	public SET_SIZE_THEME(newTheme: SizeTheme) {
+	public SET_SIZE_THEME(newTheme: string) {
 		Cookies.set(SIZE_THEME_COOKIE_KEY, newTheme);
 		this.sizeTheme = newTheme;
 	}
@@ -147,6 +146,14 @@ class App extends VuexModule {
 
 	get sizeThemeClass() {
 		return (this.sizeTheme ? SIZE_THEMES[this.sizeTheme].class : '');
+	}
+
+	get colorThemes() {
+		return COLOR_THEMES;
+	}
+
+	get sizeThemes() {
+		return SIZE_THEMES;
 	}
 }
 
